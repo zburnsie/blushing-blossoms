@@ -25,6 +25,7 @@ public class Inquiry
     public string Budget { get; set; } = string.Empty;
 
     public string? WeddingItems { get; set; }
+    public string? RentalsInterest { get; set; }
 
     public string ReferralSource { get; set; } = string.Empty;
 
