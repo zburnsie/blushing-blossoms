@@ -1,0 +1,6 @@
+@BlushingBlossoms.API_HostAddress = http://localhost:5034
+
+GET {{BlushingBlossoms.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
