@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Inquiry from "./pages/Inquiry";
 import Gallery from "./pages/Gallery";
 import Rentals from "./pages/Rentals";
+import AdminInquiries from "./pages/AdminInquiries";
+import AdminLogin from "./pages/AdminLogin";
 
 function App() {
   return (
@@ -13,6 +15,9 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/rentals" element={<Rentals />} />
         <Route path="/inquiry" element={<Inquiry />} />
+        <Route path="/admin/inquiries" element={<AdminInquiries />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/inquiries" element={<AdminInquiries />} />
       </Route>
     </Routes>
   );

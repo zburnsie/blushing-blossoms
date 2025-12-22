@@ -9,6 +9,12 @@ export default function Layout() {
           <Link to="/gallery">Gallery</Link>
           <Link to="/rentals">Rentals</Link>
           <Link to="/inquiry">Inquiry</Link>
+          <Link
+            to="/admin/inquiries"
+            style={{ marginLeft: "20px", fontWeight: "bold" }}
+          >
+            Admin
+          </Link>
         </nav>
       </header>
 

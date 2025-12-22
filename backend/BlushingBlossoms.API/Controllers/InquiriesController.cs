@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BlushingBlossoms.API.DTOs;
 using BlushingBlossoms.API.Models;
 using BlushingBlossoms.API.Data;
+using BlushingBlossoms.API.Services;
 
 namespace BlushingBlossoms.API.Controllers;
 
@@ -11,10 +12,12 @@ namespace BlushingBlossoms.API.Controllers;
 public class InquiriesController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly EmailService _emailService;
 
-    public InquiriesController(AppDbContext context)
+    public InquiriesController(AppDbContext context, EmailService emailService)
     {
         _context = context;
+        _emailService = emailService;
     }
 
     // GET: /api/inquiries
@@ -54,6 +57,39 @@ public class InquiriesController : ControllerBase
         _context.Inquiries.Add(inquiry);
         await _context.SaveChangesAsync();
 
+        // 🔔 SEND EMAIL NOTIFICATION
+        await _emailService.SendInquiryNotification($@"
+        New Blushing Blossoms Inquiry
+
+        Name: {inquiry.Name}
+        Email: {inquiry.Email}
+        Phone: {inquiry.PhoneNumber}
+        Event Type: {inquiry.EventType}
+        Event Date: {inquiry.EventDate:d}
+        Budget: {inquiry.Budget}
+        Referral Source: {inquiry.ReferralSource}
+");
+
         return Ok(new { message = "Inquiry received successfully" });
     }
+
+        // ------------------------------------
+    // DELETE: /api/inquiries/{id}
+    // ------------------------------------
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteInquiry(int id)
+    {
+        var inquiry = await _context.Inquiries.FindAsync(id);
+
+        if (inquiry == null)
+        {
+            return NotFound();
+        }
+
+        _context.Inquiries.Remove(inquiry);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
 }

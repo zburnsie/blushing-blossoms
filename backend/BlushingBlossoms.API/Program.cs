@@ -1,10 +1,14 @@
 using BlushingBlossoms.API.Data;
 using Microsoft.EntityFrameworkCore;
+using BlushingBlossoms.API.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllers();
+builder.Services.AddScoped<EmailService>();
+
 
 // 🔹 DbContext (THIS WAS MISSING)
 builder.Services.AddDbContext<AppDbContext>(options =>
