@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import "./Inquiry.css";
+
 
 export default function Inquiry() {
   const [formData, setFormData] = useState({
@@ -73,97 +75,121 @@ export default function Inquiry() {
   }
 
   return (
-    <div style={{ maxWidth: "600px" }}>
-      <h1>Inquiry</h1>
+  <div className="inquiry-page">
+    <div className="form-container">
+      <div className="heading-wrap">
+        <h1>Inquiry</h1>
+        <p className="subtitle">We'd love to hear about your special day</p>
+      </div>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <input name="name" value={formData.name} onChange={handleChange} />
-        </div>
+    <form onSubmit={handleSubmit}>
+      <div className="form-field">
+        <label className="form-label">
+          NAME <span className="text-red-600">*</span>
+        </label>
+        <input
+          className="form-input"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div>
-          <label>Phone Number</label>
-          <input
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-          />
-        </div>
+      <div className="form-field">
+        <label className="form-label">PHONE NUMBER</label>
+        <input
+          className="form-input"
+          name="phoneNumber"
+          value={formData.phoneNumber}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div>
-          <label>Email</label>
-          <input name="email" value={formData.email} onChange={handleChange} />
-        </div>
+      <div className="form-field">
+        <label className="form-label">EMAIL</label>
+        <input
+          className="form-input"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div>
-          <label>Instagram Handle (optional)</label>
-          <input
-            name="instagramHandle"
-            value={formData.instagramHandle}
-            onChange={handleChange}
-          />
-        </div>
+      <div className="form-field">
+        <label className="form-label">INSTAGRAM HANDLE (OPTIONAL)</label>
+        <input
+          className="form-input"
+          name="instagramHandle"
+          value={formData.instagramHandle}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div>
-          <label>Type of Event</label>
-          <select
-            name="eventType"
-            value={formData.eventType}
-            onChange={handleChange}
-          >
-            <option value="">Select</option>
-            <option>Wedding</option>
-            <option>Funeral</option>
-            <option>Corporate Event</option>
-            <option>Other</option>
-          </select>
-        </div>
+      <div className="form-field">
+        <label className="form-label">TYPE OF EVENT</label>
+        <select
+          className="form-input"
+          name="eventType"
+          value={formData.eventType}
+          onChange={handleChange}
+        >
+          <option value="">Select</option>
+          <option>Wedding</option>
+          <option>Funeral</option>
+          <option>Corporate Event</option>
+          <option>Other</option>
+        </select>
+      </div>
 
-        <div>
-          <label>Where are you in the booking process?</label>
-          <select
-            name="bookingStage"
-            value={formData.bookingStage}
-            onChange={handleChange}
-          >
-            <option value="">Select</option>
-            <option>Ready to book</option>
-            <option>Likely to book</option>
-            <option>Still looking</option>
-          </select>
-        </div>
+      <div className="form-field">
+        <label className="form-label">WHERE ARE YOU IN THE BOOKING PROCESS?</label>
+        <select
+          className="form-input"
+          name="bookingStage"
+          value={formData.bookingStage}
+          onChange={handleChange}
+        >
+          <option value="">Select</option>
+          <option>Ready to book</option>
+          <option>Likely to book</option>
+          <option>Still looking</option>
+        </select>
+      </div>
 
-        <div>
-          <label>Event Location</label>
-          <input
-            name="eventLocation"
-            value={formData.eventLocation}
-            onChange={handleChange}
-          />
-        </div>
+      <div className="form-field">
+        <label className="form-label">EVENT LOCATION</label>
+        <input
+          className="form-input"
+          name="eventLocation"
+          value={formData.eventLocation}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div>
-          <label>Event Date</label>
-          <input
-            type="date"
-            name="eventDate"
-            value={formData.eventDate}
-            onChange={handleChange}
-          />
-        </div>
+      <div className="form-field">
+        <label className="form-label">EVENT DATE</label>
+        <input
+          className="form-input"
+          type="date"
+          name="eventDate"
+          value={formData.eventDate}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div>
-          <label>Color Palette</label>
-          <input
-            name="colorPalette"
-            value={formData.colorPalette}
-            onChange={handleChange}
-          />
-        </div>
+      <div className="form-field">
+        <label className="form-label">COLOR PALETTE</label>
+        <input
+          className="form-input"
+          name="colorPalette"
+          value={formData.colorPalette}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div>
-          <label>Budget</label>
+      <div className="form-field">
+        <label className="form-label">BUDGET</label>
+        <div className="radio-stack">
           {[
             "500-1000",
             "1000-1500",
@@ -175,7 +201,7 @@ export default function Inquiry() {
             "7000+",
             "other",
           ].map((range) => (
-            <label key={range} style={{ display: "block" }}>
+            <label key={range}>
               <input
                 type="radio"
                 name="budget"
@@ -187,9 +213,11 @@ export default function Inquiry() {
             </label>
           ))}
         </div>
+      </div>
 
-        <div>
-          <label>If wedding, what items are you looking for?</label>
+      <div className="form-field">
+        <label className="form-label">IF WEDDING, WHAT ITEMS ARE YOU LOOKING FOR?</label>
+        <div className="checkbox-stack">
           {[
             "Bridal Bouquet",
             "Boutonnieres",
@@ -198,7 +226,7 @@ export default function Inquiry() {
             "Installations",
             "Other",
           ].map((item) => (
-            <label key={item} style={{ display: "block" }}>
+            <label key={item}>
               <input
                 type="checkbox"
                 value={item}
@@ -209,14 +237,16 @@ export default function Inquiry() {
             </label>
           ))}
         </div>
+      </div>
 
-        <div>
+      <div className="form-field">
+        <label className="form-label">
+          ARE YOU INTERESTED IN ADDING EVENT RENTALS (PLATES, SILVERWARE, CANDLES,
+          PICTURE FRAMES, PEDESTALS, ETC.)?
+        </label>
+
+        <div className="radio-stack">
           <label>
-            Are you interested in adding event rentals (plates, silverware,
-            candles, picture frames, pedestals, etc.)?
-          </label>
-
-          <label style={{ display: "block" }}>
             <input
               type="radio"
               name="rentalsInterest"
@@ -227,7 +257,7 @@ export default function Inquiry() {
             Yes
           </label>
 
-          <label style={{ display: "block" }}>
+          <label>
             <input
               type="radio"
               name="rentalsInterest"
@@ -238,28 +268,28 @@ export default function Inquiry() {
             No
           </label>
         </div>
+      </div>
 
-        <div>
-          <label>How did you hear about Blushing Blossoms?</label>
-          <input
-            name="referralSource"
-            value={formData.referralSource}
-            onChange={handleChange}
-          />
-        </div>
+      <div className="form-field">
+        <label className="form-label">HOW DID YOU HEAR ABOUT BLUSHING BLOSSOMS?</label>
+        <input
+          className="form-input"
+          name="referralSource"
+          value={formData.referralSource}
+          onChange={handleChange}
+        />
+      </div>
 
-        {success && (
-          <p style={{ color: "green" }}>
-            Thank you! Your inquiry has been sent.
-          </p>
-        )}
+      {success && <p className="success">Thank you! Your inquiry has been sent.</p>}
+      {error && <p className="error">{error}</p>}
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
-
-        <button type="submit" disabled={submitting}>
+      <div className="submit-wrap">
+        <button type="submit" disabled={submitting} className="submit-btn">
           {submitting ? "Submitting..." : "Submit Inquiry"}
         </button>
-      </form>
-    </div>
-  );
+      </div>
+    </form>
+  </div>
+  </div>
+);
 }
