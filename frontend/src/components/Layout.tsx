@@ -16,6 +16,7 @@ export default function Layout() {
             <Link to="/gallery">Gallery</Link>
             <Link to="/rentals">Rentals</Link>
             <Link to="/inquiry">Inquiry</Link>
+            <Link to="/pricing">Pricing</Link>
             <Link to="/admin/inquiries" className="admin-link">
               Admin
             </Link>

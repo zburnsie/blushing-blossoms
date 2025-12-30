@@ -6,6 +6,7 @@ import Gallery from "./pages/Gallery";
 import Rentals from "./pages/Rentals";
 import AdminInquiries from "./pages/AdminInquiries";
 import AdminLogin from "./pages/AdminLogin";
+import Pricing from "./pages/Pricing";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/rentals" element={<Rentals />} />
         <Route path="/inquiry" element={<Inquiry />} />
+        <Route path="/pricing" element={<Pricing />} />
+
         <Route path="/admin/inquiries" element={<AdminInquiries />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/inquiries" element={<AdminInquiries />} />
