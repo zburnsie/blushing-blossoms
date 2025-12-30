@@ -7,6 +7,7 @@ import Rentals from "./pages/Rentals";
 import AdminInquiries from "./pages/AdminInquiries";
 import AdminLogin from "./pages/AdminLogin";
 import Pricing from "./pages/Pricing";
+import RentalRequest from "./pages/RentalRequest";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/admin/inquiries" element={<AdminInquiries />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/inquiries" element={<AdminInquiries />} />
+        <Route path="/rentals/request" element={<RentalRequest />} />
       </Route>
     </Routes>
   );

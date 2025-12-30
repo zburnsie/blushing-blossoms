@@ -1,0 +1,48 @@
+.rental-request-page {
+  background: #ffffff;
+  padding: 5rem 1rem;
+  font-family: "Fraunces", serif;
+}
+
+.form-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.rental-request-page h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.selected-item {
+  text-align: center;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.rental-request-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.rental-request-page input,
+.rental-request-page textarea {
+  padding: 14px;
+  border: 1px solid rgba(45, 45, 45, 0.25);
+  border-radius: 6px;
+  font-family: "Fraunces", serif;
+  font-size: 1rem;
+}
+
+.success {
+  margin-top: 1.5rem;
+  color: #1f7a3a;
+  font-family: "Fraunces", serif;
+}
+
+.error {
+  margin-top: 1.5rem;
+  color: #c0392b;
+  font-family: "Fraunces", serif;
+}
