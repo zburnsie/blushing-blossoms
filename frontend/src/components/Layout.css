@@ -1,77 +1,109 @@
+/* ===== NAVBAR ===== */
+
 .site-header {
   background: #844F4F;
-  border-bottom: 1px solid #eee;
-
-  /* 🔥 FULL-BLEED HEADER */
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
+  height: 10%;
 }
 
+/* One clean row, vertically centered like the reference */
 .header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.8rem 1.5rem;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+
   display: flex;
   align-items: center;
-  justify-content: center; /* center nav */
-  position: relative;      /* allow logo to pin left */
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
-.logo {
-  position: absolute;
-  left: 1.5rem;
+
+/* Left group: logo + menu all together */
+.nav-left {
   display: flex;
   align-items: center;
+  gap: 2.25rem;           /* space between logo and menu */
 }
 
-.logo img {
-  height: 40px;
-  display: block;
+.nav-logo img {
+  height: 120px;           /* increase/decrease logo size */
+  width: auto;
+  margin-top: 0;
 }
 
+/* Menu */
 .nav {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: 2.2rem;
+  margin: 0;
+  padding: 0;
 }
 
 .nav a {
-  text-decoration: none;
   color: #ffffff;
+  text-decoration: none;
   font-family: "Fraunces", serif;
-  font-size: 1rem;
+
+  /* match the “airy” reference vibe */
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.85rem;
   font-weight: 400;
 }
 
 .nav a:hover {
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
-.admin-link {
-  font-weight: 500;
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+
+  height: 44px;
+  padding: 0 1.5rem;
+
+  border: 1.5px solid #ffffff;
+  border-radius: 0;       /* reference looks more square than pill */
+  color: #ffffff;
+  text-decoration: none;
+
+  font-family: "Fraunces", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.85rem;
 }
 
-/* Main content spacing */
-.site-main {
-  padding: 2rem 1.5rem;
+.contact-btn:hover {
+  background: #ffffff;
+  color: #844F4F;
 }
 
-:root {
-  margin: 0;
-  padding: 0;
-}
+/* If you want ZERO left/right padding on the navbar (edge-to-edge content): */
+/* .header-inner { padding: 0; } */
 
-body {
-  margin: 0;
-  padding: 0;
-}
+/* Responsive */
+@media (max-width: 900px) {
+  .header-inner {
+    padding: 0 1.25rem;
+    height: 88px;
+  }
 
-.layout {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+  .nav {
+    gap: 1.2rem;
+  }
 
-.site-main {
-  flex: 1; /* pushes footer to bottom */
-}
+  .nav a {
+    letter-spacing: 0.16em;
+    font-size: 0.8rem;
+  }
 
+  .contact-btn {
+    height: 40px;
+    padding: 0 1.1rem;
+  }
+
+  .nav-logo img {
+    height: 64px;
+  }
+}

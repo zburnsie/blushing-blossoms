@@ -5,6 +5,8 @@ export default function AboutSection() {
   return (
     <section className="about-section">
       <div className="about-container">
+        <img className="about-layover" src="/images/BlushFlower.png" alt="" aria-hidden="true" />
+
         {/* Image */}
         <Link to="/" className="about-image">
           <img
@@ -15,7 +17,11 @@ export default function AboutSection() {
 
         {/* Text */}
         <div className="about-text">
-          <h2>About Blushing Blossoms</h2>
+          <h2>
+            <span>Blushing Blossoms</span> 
+            <span style={{ fontFamily: '"Amsterdam 3", cursive' }}>  .Co</span>
+          </h2>
+
 
           <p>
             Founded by Ashlyn Burnside, BlushingBlossoms.co is a floral design
