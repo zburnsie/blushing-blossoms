@@ -1,0 +1,39 @@
+.rental-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 3rem;
+}
+
+.rental-card {
+  background: #FFF9F2;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 2rem 1.75rem;
+  text-align: center;
+}
+
+.rental-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.rent-btn {
+  background: #2d2d2d;
+  color: #ffffff;
+  padding: 16px 32px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 300ms ease, transform 200ms ease;
+  font-family: "Fraunces", serif;
+  font-size: 1rem;
+  border-radius: 6px;
+  margin-top: 1.5rem;
+}
+
+.rent-btn:hover {
+  background: #1a1a1a;
+  transform: translateY(-1px);
+}
