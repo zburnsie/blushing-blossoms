@@ -1,20 +1,16 @@
-/* Base */
+
 .home-page {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: "Fraunces", serif;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
-/* HERO */
 .hero {
-  position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
 }
 
-/* Each background layer */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -31,74 +27,56 @@
   opacity: 1;
 }
 
-/* Overlay + title placement */
-.hero-overlay {
-  position: relative;
+.hero-dark-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
   z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
 
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.25);
 
   display: flex;
-  align-items: flex-start;  /* title at top */
-  justify-content: center;  /* block centered */
-  padding-top: 3.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 1.5rem;
 }
 
-/* Title styles */
-.hero-title {
-  margin: 0;
-  color: #fff;
-  text-align: left;
-  letter-spacing: 0.18em;
-  line-height: 1.05;
-}
-
-.hero-title span {
+.hero-logo {
+  width: min(520px, 78vw);
+  height: auto;
   display: block;
-  font-size: 4rem;
-  font-weight: 400;
+
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.25));
 }
 
-.hero-script {
-  font-family: "Amsterdam 3", cursive;
-  font-size: 2.2rem;
-  letter-spacing: 0.05em;
-  margin-top: 0.4rem;
-  opacity: 0.95;
-}
-
-/* NAV sticky after hero */
 .nav-wrap.is-sticky {
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-/* CONTENT */
+.home-bio h2 {
+  text-align: center;
+  color: #837c7c;
+  font-size: 3rem;
+}
+
 .home-content {
   padding: 3rem 1.5rem;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-  .hero-overlay {
-    padding-top: 2.5rem;
+  .hero-content {
+    padding-top: 1.25rem;
   }
 
-  .hero-title span {
-    font-size: 2.6rem;
+  .home-bio h2 {
+    font-size: 2.2rem;
   }
-
-  .hero-script {
-    font-size: 1.6rem;
-  }
-}
-
-
-.nav-wrap.is-sticky {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }

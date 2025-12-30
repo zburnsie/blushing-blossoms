@@ -8,8 +8,7 @@ export default function Layout() {
   const isHome = pathname === "/";
 
   return (
-    <div className="layout">
-      {/* Show the navbar on every page EXCEPT home */}
+    <div className={`layout ${isHome ? "is-home" : ""}`}>
       {!isHome && <Navbar />}
 
       <main className="site-main">
@@ -20,3 +19,4 @@ export default function Layout() {
     </div>
   );
 }
+

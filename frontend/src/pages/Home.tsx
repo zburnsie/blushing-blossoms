@@ -39,7 +39,7 @@ export default function Home() {
 
     const id = window.setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 5500); // change every 5.5s
+    }, 4500); // change every 4.5s
 
     return () => window.clearInterval(id);
   }, []);
@@ -48,7 +48,6 @@ export default function Home() {
     <div className="home-page">
       {/* HERO */}
       <section ref={heroRef} className="hero">
-        {/* background layers */}
         {HERO_IMAGES.map((src, i) => (
           <div
             key={src}
@@ -57,19 +56,26 @@ export default function Home() {
           />
         ))}
 
-        {/* overlay + title */}
-        <div className="hero-overlay">
-          <h1 className="hero-title">
-            <span>BLUSHING</span>
-            <span>BLOSSOMS</span>
-            <span className="hero-script">&amp; Co.</span>
-          </h1>
+        <div className="hero-dark-overlay" />
+
+        <div className="hero-content">
+          <img
+            className="hero-logo"
+            src="/images/WhiteTranspLogo.png"
+            alt="Blushing Blossoms & Co."
+          />
         </div>
       </section>
+
+
 
       {/* NAV (becomes sticky after hero) */}
       <div className={`nav-wrap ${navSticky ? "is-sticky" : ""}`}>
         <Navbar />
+      </div>
+
+      <div className="home-bio">
+        <h2>UTAH FLORIST</h2>
       </div>
 
       {/* PAGE CONTENT */}
