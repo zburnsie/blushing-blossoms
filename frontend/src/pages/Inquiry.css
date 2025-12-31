@@ -1,7 +1,6 @@
 /* Page stays white */
 .inquiry-page {
-  background: #ffffff;
-  padding: 5rem 1rem; /* breathing room top/bottom */
+  padding: 0rem 1rem; /* breathing room top/bottom */
   font-family: "Fraunces", serif;
   color: #2d2d2d;
 }
@@ -48,7 +47,7 @@
   border: 1px solid rgba(45, 45, 45, 0.25);
   border-radius: 6px;
   outline: none;
-  background: #fff;
+  background-color: #FFF9F2;
   font-family: "Fraunces", serif;
   font-size: 1rem;
 }
@@ -84,7 +83,7 @@
 .inquiry-page .submit-btn {
   width: 100%;
   background: #2d2d2d;
-  color: #fff;
+  color: #FFF9F2;
   padding: 16px 32px;
   border: none;
   cursor: pointer;
@@ -108,7 +107,7 @@
 
 /* Soft container for the form */
 .form-container {
-  background: #ffffff;
+  background: #FFF9F2;
   max-width: 900px; /* controls how wide it gets */
   margin: 0 auto;   /* centers it */
   padding: 4rem 3rem;
@@ -127,3 +126,4 @@
 .inquiry-page *::after {
   box-sizing: border-box;
 }
+
