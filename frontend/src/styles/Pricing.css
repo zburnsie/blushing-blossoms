@@ -1,0 +1,77 @@
+.pricing-page {
+  background: #ffffff;
+  padding: 5rem 1rem;
+  font-family: "Fraunces", serif;
+  color: #2d2d2d;
+}
+
+.pricing-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pricing-header h1 {
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.pricing-header .subtitle {
+  font-size: 1.125rem;
+  opacity: 0.7;
+}
+
+.pricing-section h2 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.pricing-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pricing-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.05rem;
+  border-bottom: 1px solid rgba(45, 45, 45, 0.1);
+  padding-bottom: 0.75rem;
+}
+
+.price {
+  opacity: 0.8;
+}
+
+.pricing-note {
+  margin-top: 3rem;
+  font-size: 0.95rem;
+  opacity: 0.6;
+  text-align: center;
+}
+
+.pricing-cta {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.pricing-btn {
+  display: inline-block;
+  background: #2d2d2d;
+  color: #ffffff;
+  padding: 16px 32px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 300ms ease;
+}
+
+.pricing-btn:hover {
+  background: #1a1a1a;
+}
