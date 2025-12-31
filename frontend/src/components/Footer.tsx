@@ -16,20 +16,11 @@ export default function Footer() {
             <FaInstagram />
           </a>
 
-          <a
-            href="https://pinterest.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Pinterest"
-          >
-            <FaPinterestP />
-          </a>
         </div>
 
         {/* Contact Info */}
         <div className="footer-contact">
-          <p>(801) 555-1234</p>
-          <p>hello@blushingblossoms.com</p>
+          <p>BlushingBlossoms.co@gmail.com</p>
         </div>
       </div>
 

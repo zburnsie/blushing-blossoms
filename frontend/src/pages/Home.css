@@ -80,3 +80,60 @@
     font-size: 2.2rem;
   }
 }
+
+
+
+.home-cta {
+  padding: 6rem 1.5rem;
+  text-align: center;
+}
+
+.home-cta-title {
+  margin: 0 0 1.25rem;
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: #2b2b2b;
+}
+
+.home-cta-text {
+  margin: 0 0 2.5rem;
+  font-family: "Fraunces", serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #5a5a5a;
+  max-width: 42ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.home-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 52px;
+  padding: 0 2.75rem;
+
+  border: 1px solid #2b2b2b;
+  background: transparent;
+  color: #2b2b2b;
+
+  font-family: "Fraunces", serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.home-cta-btn:hover {
+  background-color: #844F4F;
+  color: #ffffff;
+  border-color: #844F4F;
+  transform: translateY(-1px);
+}
+

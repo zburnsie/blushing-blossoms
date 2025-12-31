@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import "./Home.css";
-import AboutSection from "../components/AboutSection";
+import AboutBlushingBlossoms from "../components/AboutBlushingBlossoms";
 import Navbar from "../components/Navbar";
+import Services from "../components/Services";
+import ReviewBanner from "../components/ReviewBanner";
+import { Link } from "react-router-dom";
 
 
 const HERO_IMAGES = [
@@ -75,13 +78,40 @@ export default function Home() {
       </div>
 
       <div className="home-bio">
-        <h2>UTAH FLORIST</h2>
+        <h3>Thoughtful florals for weddings and meaningful moments <br/>
+            Serving Utah County & surrounding areas</h3>
+
+        <p>A local Utah County florist
+Blushing Blossoms is based in Utah and proudly serves Utah County and surrounding areas. Each design is created with intention, seasonality, and your story in mind.</p>
+          
+         
+
       </div>
 
       {/* PAGE CONTENT */}
       <main className="home-content">
-        <AboutSection />
+        <Services />
+        <ReviewBanner
+          quote="Blushing Blossoms was AMAZING! They made my Pinterest board come to life!"
+          author="Braylee | Wedding"
+          backgroundImage="/images/review-banner.JPG"
+        />
+        <AboutBlushingBlossoms />
+
       </main>
+
+      <section className="home-cta">
+        <h2 className="home-cta-title">Let’s create something beautiful together</h2>
+        <p className="home-cta-text">
+          Inquire below to share your vision and check availability for your wedding or event.
+        </p>
+
+        <Link to="/inquiry" className="home-cta-btn">
+          Inquire About Your Event
+        </Link>
+      </section>
+
+
     </div>
   );
 }
