@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "./Home.css";
+import "../styles/Home.css";
 import AboutBlushingBlossoms from "../components/AboutBlushingBlossoms";
 import Navbar from "../components/Navbar";
 import Services from "../components/Services";
@@ -77,16 +77,21 @@ export default function Home() {
         <Navbar />
       </div>
 
-      <div className="home-bio">
-        <h3>Thoughtful florals for weddings and meaningful moments <br/>
-            Serving Utah County & surrounding areas</h3>
+      <section className="home-intro">
+  
+        <br></br>
+        <p className="home-intro-kicker">Utah County Florist</p>
+        <h2 className="home-intro-title">
+          Wedding florals that feel personal, <br/> elevated, and timeless.
+        </h2>
+        <br></br>
 
-        <p>A local Utah County florist
-Blushing Blossoms is based in Utah and proudly serves Utah County and surrounding areas. Each design is created with intention, seasonality, and your story in mind.</p>
-          
-         
+        <Link to="/inquiry" className="home-intro-btn">
+          Inquire About Your Date
+        </Link>
+      </section>
 
-      </div>
+
 
       {/* PAGE CONTENT */}
       <main className="home-content">

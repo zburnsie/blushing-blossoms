@@ -1,0 +1,129 @@
+/* Page stays white */
+.inquiry-page {
+  padding: 0rem 1rem; /* breathing room top/bottom */
+  font-family: "Fraunces", serif;
+  color: #2d2d2d;
+}
+
+.inquiry-page .heading-wrap {
+  margin-bottom: 4rem; /* similar to mb-16 */
+  text-align: center;
+}
+
+.inquiry-page h1 {
+  font-size: 3rem; /* similar to text-5xl */
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.inquiry-page .subtitle {
+  font-size: 1.125rem; /* text-lg */
+  opacity: 0.7;
+}
+
+.inquiry-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; /* space-y-10 */
+}
+
+.inquiry-page .form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.inquiry-page .form-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.inquiry-page .form-input {
+  width: 100%;
+  padding: 14px 14px;
+  border: 1px solid rgba(45, 45, 45, 0.25);
+  border-radius: 6px;
+  outline: none;
+  background-color: #FFF9F2;
+  font-family: "Fraunces", serif;
+  font-size: 1rem;
+}
+
+.inquiry-page .form-input:focus {
+  border-color: rgba(45, 45, 45, 0.55);
+}
+
+.inquiry-page .helper {
+  font-size: 0.875rem; /* text-sm */
+  opacity: 0.6;
+  margin-top: -0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.inquiry-page .radio-stack label,
+.inquiry-page .checkbox-stack label {
+  display: block;
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.inquiry-page input[type="radio"],
+.inquiry-page input[type="checkbox"] {
+  margin-right: 10px;
+  transform: translateY(1px);
+}
+
+.inquiry-page .submit-wrap {
+  padding-top: 1.5rem; /* pt-6 */
+}
+
+.inquiry-page .submit-btn {
+  width: 100%;
+  background: #2d2d2d;
+  color: #FFF9F2;
+  padding: 16px 32px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 300ms ease;
+  font-family: "Fraunces", serif;
+  font-size: 1rem;
+}
+
+.inquiry-page .submit-btn:hover {
+  background: #1a1a1a;
+}
+
+.inquiry-page .success {
+  color: #1f7a3a;
+}
+
+.inquiry-page .error {
+  color: #c0392b;
+}
+
+
+/* Soft container for the form */
+.form-container {
+  background: #FFF9F2;
+  max-width: 900px; /* controls how wide it gets */
+  margin: 0 auto;   /* centers it */
+  padding: 2rem 3rem;
+  border-radius: 12px;
+}
+
+/* Mobile-friendly padding */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 3rem 1.5rem;
+  }
+}
+
+.inquiry-page *,
+.inquiry-page *::before,
+.inquiry-page *::after {
+  box-sizing: border-box;
+}
+

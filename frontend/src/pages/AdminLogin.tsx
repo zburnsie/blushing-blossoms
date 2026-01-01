@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../styles/AdminLogin.css";
 
 export default function AdminLogin() {
   const [password, setPassword] = useState("");
@@ -23,24 +24,38 @@ export default function AdminLogin() {
   }
 
   return (
-    <div style={{ maxWidth: "400px", margin: "60px auto" }}>
-      <h2>Admin Login</h2>
+    <div className="admin-login-page">
+      <div className="admin-login-card">
+        <div className="admin-login-heading">
+          <h1>Admin Login</h1>
+          <p className="subtitle">Authorized access only</p>
+        </div>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="password"
-          placeholder="Admin password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ width: "100%", padding: "8px" }}
-        />
+        <form onSubmit={handleSubmit} className="admin-login-form">
+          <div className="admin-login-field">
+            <label className="admin-login-label" htmlFor="password">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              className="admin-login-input"
+              placeholder="Admin password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+          {error && <p className="admin-login-error">{error}</p>}
 
-        <button type="submit" style={{ marginTop: "12px", width: "100%" }}>
-          Login
-        </button>
-      </form>
+          <div className="admin-login-actions">
+            <button type="submit" className="admin-login-btn">
+              Log In
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -17,9 +17,6 @@ export default function Navbar() {
             <Link to="/rentals">Rentals</Link>
             <Link to="/inquiry">Inquiry</Link>
             <Link to="/pricing">Pricing</Link>
-            <Link to="/admin/inquiries" className="admin-link">
-              Admin
-            </Link>
           </nav>
         </div>
 

@@ -17,10 +17,12 @@ export default function AboutBlushingBlossoms() {
 
         {/* Text */}
         <div className="about-text">
-          <h2>
-            <span>Blushing Blossoms</span> 
-            <span style={{ fontFamily: '"Amsterdam 3", cursive' }}>  .Co</span>
-          </h2>
+          <Link to="/" className="about-image">
+          <img
+            src="/images/AboutBlushingBlossoms.png"
+            alt="Blushing Blossoms Logo"
+          />
+        </Link>
 
 
           <p>

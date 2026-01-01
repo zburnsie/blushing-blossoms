@@ -27,14 +27,8 @@
   max-width: 520px;
 }
 
-.about-text h2 {
-  margin-bottom: 1.5rem;
-  font-size: 3rem;
-  color: #837c7c;
-}
 
 .about-text p {
-  color: #837c7c; /* soft charcoal instead of black */
   line-height: 1.7;
   margin-bottom: 1.2rem;
   font-size: 1.2rem;
