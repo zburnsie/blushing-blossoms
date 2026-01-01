@@ -1,39 +1,141 @@
-.rental-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 3rem;
+/* Page wrapper */
+.rentals-page {
+  padding: 4.5rem 1.25rem;
+  font-family: "Fraunces", serif;
+  color: #2b2b2b;
 }
 
+/* Centered container like your other pages */
+.rentals-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Heading block */
+.rentals-heading {
+  text-align: center;
+  margin-bottom: 3.25rem;
+}
+
+.rent-title {
+  margin: 0 0 1rem;
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: #2b2b2b;
+}
+
+.rent-text {
+  margin: 0 auto;
+  font-family: "Fraunces", serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #5a5a5a;
+  max-width: 60ch;
+}
+
+/* Grid */
+.rental-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+/* Card */
 .rental-card {
   background: #FFF9F2;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 2rem 1.75rem;
+  border: 1px solid rgba(45, 45, 45, 0.12);
+  border-radius: 0; /* match your site: NO rounding */
+  overflow: hidden; /* keeps image clean */
+}
+
+/* Image styling: less “square”, more editorial */
+.rental-imgFrame {
+  width: 100%;
+  aspect-ratio: 15 / 16;  /* less tall than 4/5, more natural */
+  overflow: hidden;
+  background: #f3f1f1;
+}
+
+.rental-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transition: transform 400ms ease;
+}
+
+.rental-card:hover .rental-img {
+  transform: scale(1.03);
+}
+
+/* Body */
+.rental-body {
+  padding: 1.75rem 1.6rem 2rem;
   text-align: center;
 }
 
-.rental-card img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
+.rental-name {
+  margin: 0 0 0.75rem;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #2b2b2b;
 }
 
-.rent-btn {
-  background: #2d2d2d;
-  color: #ffffff;
-  padding: 16px 32px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 300ms ease, transform 200ms ease;
-  font-family: "Fraunces", serif;
+.rental-desc {
+  margin: 0 auto 1.5rem;
+  max-width: 48ch;
+  color: #5a5a5a;
+  line-height: 1.7;
   font-size: 1rem;
-  border-radius: 6px;
-  margin-top: 1.5rem;
 }
 
+/* Button: match your site’s outlined CTA, blush hover fill */
+.rent-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 48px;
+  padding: 0 2.2rem;
+
+  border: 1px solid #2b2b2b;
+  background: transparent;
+  color: #2b2b2b;
+
+  font-family: "Fraunces", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.9rem;
+
+  cursor: pointer;
+  transition: background-color 250ms ease, color 250ms ease, transform 200ms ease, opacity 200ms ease;
+}
+
+/* Blush hover */
 .rent-btn:hover {
-  background: #1a1a1a;
+  background: #844F4F; /* your blush navbar */
+  border-color: #844F4F;
+  color: #ffffff;
   transform: translateY(-1px);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .rent-btn,
+  .rental-img {
+    transition: none;
+  }
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+  .rentals-page {
+    padding: 3.5rem 1rem;
+  }
+
+  .rental-grid {
+    gap: 2rem;
+  }
 }

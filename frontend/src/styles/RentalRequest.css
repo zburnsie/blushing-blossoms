@@ -1,48 +1,118 @@
+/* Match Inquiry look/spacing */
 .rental-request-page {
-  background: #ffffff;
-  padding: 5rem 1rem;
+  padding: 0rem 1rem;
   font-family: "Fraunces", serif;
+  color: #2d2d2d;
 }
 
-.form-container {
-  max-width: 700px;
-  margin: 0 auto;
+.rental-request-page .heading-wrap {
+  margin-bottom: 4rem;
+  text-align: center;
 }
 
 .rental-request-page h1 {
-  text-align: center;
-  margin-bottom: 1.5rem;
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  font-weight: 400;
 }
 
-.selected-item {
-  text-align: center;
-  margin-bottom: 2rem;
-  opacity: 0.8;
+.rental-request-page .subtitle {
+  font-size: 1.125rem;
+  opacity: 0.7;
 }
 
 .rental-request-page form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2.5rem;
 }
 
-.rental-request-page input,
-.rental-request-page textarea {
-  padding: 14px;
+.rental-request-page .form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.rental-request-page .form-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.rental-request-page .form-input {
+  width: 100%;
+  padding: 14px 14px;
   border: 1px solid rgba(45, 45, 45, 0.25);
   border-radius: 6px;
+  outline: none;
+  background-color: #FFF9F2;
   font-family: "Fraunces", serif;
   font-size: 1rem;
 }
 
-.success {
-  margin-top: 1.5rem;
-  color: #1f7a3a;
-  font-family: "Fraunces", serif;
+.rental-request-page .form-input:focus {
+  border-color: rgba(45, 45, 45, 0.55);
 }
 
-.error {
-  margin-top: 1.5rem;
-  color: #c0392b;
+.rental-request-page .checkbox-stack label {
+  display: block;
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.rental-request-page input[type="checkbox"] {
+  margin-right: 10px;
+  transform: translateY(1px);
+}
+
+.rental-request-page .submit-wrap {
+  padding-top: 1.5rem;
+}
+
+.rental-request-page .submit-btn {
+  width: 100%;
+  background: #2d2d2d;
+  color: #FFF9F2;
+  padding: 16px 32px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 300ms ease;
   font-family: "Fraunces", serif;
+  font-size: 1rem;
+}
+
+.rental-request-page .submit-btn:hover {
+  background: #1a1a1a;
+}
+
+.rental-request-page .success {
+  margin-top: 1.25rem;
+  color: #1f7a3a;
+}
+
+.rental-request-page .error {
+  margin-top: 1.25rem;
+  color: #c0392b;
+}
+
+/* Use the same container style */
+.rental-request-page .form-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 3rem;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .rental-request-page .form-container {
+    padding: 3rem 1.5rem;
+  }
+}
+
+.rental-request-page *,
+.rental-request-page *::before,
+.rental-request-page *::after {
+  box-sizing: border-box;
 }

@@ -1,14 +1,17 @@
 .pricing-page {
-  background: #ffffff;
-  padding: 5rem 1rem;
+  padding: 0rem 1rem;
   font-family: "Fraunces", serif;
   color: #2d2d2d;
 }
 
 .pricing-container {
+  background: #FFF9F2;
   max-width: 900px;
   margin: 0 auto;
+  padding: 2rem 3rem;
+  border-radius: 12px;
 }
+
 
 .pricing-header {
   text-align: center;
@@ -59,19 +62,38 @@
 
 .pricing-cta {
   margin-top: 4rem;
+  width: 100%;
   text-align: center;
 }
 
 .pricing-btn {
-  display: inline-block;
+  display: block;         
+  width: 100%;           
+  box-sizing: border-box;  
+
   background: #2d2d2d;
-  color: #ffffff;
+  color: #FFF9F2;
+
   padding: 16px 32px;
   text-decoration: none;
   font-size: 1rem;
+  font-family: "Fraunces", serif;
+
+  border: none;
+  border-radius: 0;        
+  cursor: pointer;
+
   transition: background-color 300ms ease;
 }
 
 .pricing-btn:hover {
   background: #1a1a1a;
+}
+
+
+
+@media (max-width: 768px) {
+  .pricing-container {
+    padding: 3rem 1.5rem;
+  }
 }

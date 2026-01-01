@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import "./Inquiry.css";
+import "../styles/Inquiry.css";
 
 
 export default function Inquiry() {

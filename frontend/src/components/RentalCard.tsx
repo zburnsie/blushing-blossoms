@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
   item: RentalItem;
-  onRent: (item: RentalItem) => void;
 };
 
 export default function RentalCard({ item }: Props) {
@@ -14,14 +13,19 @@ export default function RentalCard({ item }: Props) {
   }
 
   return (
-    <div className="rental-card">
-      <img src={item.image} alt={item.name} />
-      <h3>{item.name}</h3>
-      <p>{item.description}</p>
+    <article className="rental-card">
+      <div className="rental-imgFrame">
+        <img className="rental-img" src={item.image} alt={item.name} />
+      </div>
 
-      <button className="rent-btn" onClick={handleRentClick}>
-        Rent this item
-      </button>
-    </div>
+      <div className="rental-body">
+        <h3 className="rental-name">{item.name}</h3>
+        <p className="rental-desc">{item.description}</p>
+
+        <button className="rent-btn" onClick={handleRentClick}>
+          Rent this item
+        </button>
+      </div>
+    </article>
   );
 }

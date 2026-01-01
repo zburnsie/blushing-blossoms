@@ -1,11 +1,12 @@
 import { FaInstagram, FaPinterestP } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
-        {/* Social Icons */}
+        {/* LEFT: Socials */}
         <div className="footer-socials">
           <a
             href="https://www.instagram.com/blushingblossoms.co/"
@@ -16,11 +17,37 @@ export default function Footer() {
             <FaInstagram />
           </a>
 
+          <a
+            href="https://pin.it/36MmGCGYh"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Pinterest"
+          >
+            <FaPinterestP />
+          </a>
         </div>
 
-        {/* Contact Info */}
+        {/* CENTER: Flower mark */}
+        <div className="footer-logo">
+          <img
+            src="/images/BlushFlower.png"
+            alt="Blushing Blossoms floral mark"
+          />
+        </div>
+
+        {/* RIGHT: Contact + Admin */}
         <div className="footer-contact">
-          <p>BlushingBlossoms.co@gmail.com</p>
+          <a
+              href="mailto:BlushingBlossoms.co@gmail.com?subject=Floral%20Inquiry"
+              className="footer-email"
+            >
+              BlushingBlossoms.co@gmail.com
+          </a>
+
+
+          <Link to="/admin/inquiries" className="footer-admin">
+            Admin
+          </Link>
         </div>
       </div>
 

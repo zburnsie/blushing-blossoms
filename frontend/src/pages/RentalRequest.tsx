@@ -72,7 +72,6 @@ export default function RentalRequest() {
 
       setStatus("success");
 
-      // Reset form after success
       setFormData({
         name: "",
         email: "",
@@ -90,50 +89,85 @@ export default function RentalRequest() {
   return (
     <div className="rental-request-page">
       <div className="form-container">
-        <h1>Rental Request</h1>
+        <div className="heading-wrap">
+          <h1>Rental Request</h1>
 
-        {item && (
-          <p className="selected-item">
-            Item selected: <strong>{item}</strong>
-          </p>
-        )}
+          {item ? (
+            <p className="subtitle">
+              Selected item: <strong>{item}</strong>
+            </p>
+          ) : (
+            <p className="subtitle">
+              Tell us what you’d like to rent and we’ll confirm availability.
+            </p>
+          )}
+        </div>
 
         <form onSubmit={handleSubmit}>
-          <input
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+          <div className="form-field">
+            <label className="form-label" htmlFor="name">
+              Name
+            </label>
+            <input
+              id="name"
+              className="form-input"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <input
-            name="email"
-            type="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+          <div className="form-field">
+            <label className="form-label" htmlFor="email">
+              Email
+            </label>
+            <input
+              id="email"
+              className="form-input"
+              name="email"
+              type="email"
+              placeholder="Email Address"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <input
-            name="eventDate"
-            type="date"
-            value={formData.eventDate}
-            onChange={handleChange}
-          />
+          <div className="form-field">
+            <label className="form-label" htmlFor="eventDate">
+              Event Date
+            </label>
+            <input
+              id="eventDate"
+              className="form-input"
+              name="eventDate"
+              type="date"
+              value={formData.eventDate}
+              onChange={handleChange}
+            />
+          </div>
 
-          <input
-            name="quantity"
-            placeholder="Quantity needed"
-            value={formData.quantity}
-            onChange={handleChange}
-          />
+          <div className="form-field">
+            <label className="form-label" htmlFor="quantity">
+              Quantity Needed
+            </label>
+            <input
+              id="quantity"
+              className="form-input"
+              name="quantity"
+              placeholder="Quantity needed"
+              value={formData.quantity}
+              onChange={handleChange}
+            />
+          </div>
 
-          <div className="checkbox-group">
-            <label className="checkbox-label">Items to Rent</label>
+          <div className="form-field checkbox-stack">
+            <p className="form-label">Items to Rent</p>
+
             {rentalItems.map((r) => (
-              <label key={r.id} className="checkbox-item">
+              <label key={r.id}>
                 <input
                   type="checkbox"
                   checked={formData.selectedItems.includes(r.name)}
@@ -144,27 +178,36 @@ export default function RentalRequest() {
             ))}
           </div>
 
-          <textarea
-            name="notes"
-            rows={4}
-            placeholder="Anything else we should know?"
-            value={formData.notes}
-            onChange={handleChange}
-          />
+          <div className="form-field">
+            <label className="form-label" htmlFor="notes">
+              Notes
+            </label>
+            <textarea
+              id="notes"
+              className="form-input"
+              name="notes"
+              rows={4}
+              placeholder="Anything else we should know?"
+              value={formData.notes}
+              onChange={handleChange}
+            />
+          </div>
 
-          <button type="submit" className="rent-btn">
-            Submit Rental Request
-          </button>
+          <div className="submit-wrap">
+            <button type="submit" className="submit-btn">
+              Submit Rental Request
+            </button>
 
-          {status === "success" && (
-            <p className="success">
-              Rental request sent! We’ll be in touch soon.
-            </p>
-          )}
+            {status === "success" && (
+              <p className="success">
+                Rental request sent! We’ll be in touch soon.
+              </p>
+            )}
 
-          {status === "error" && (
-            <p className="error">Something went wrong. Please try again.</p>
-          )}
+            {status === "error" && (
+              <p className="error">Something went wrong. Please try again.</p>
+            )}
+          </div>
         </form>
       </div>
     </div>

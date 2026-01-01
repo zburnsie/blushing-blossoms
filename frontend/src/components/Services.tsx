@@ -78,10 +78,10 @@ export default function Services() {
 
   return (
     <section className="services" aria-label="Services">
+          <p className="services-kicker">Floral Services</p>
       <div className="services-inner">
         {services.map((service, idx) => {
           const isReverse = idx % 2 === 1; // alternate layout
-          const img = service.images[slideIndex % service.images.length];
 
           return (
             <article
