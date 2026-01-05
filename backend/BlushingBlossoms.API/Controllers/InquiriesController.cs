@@ -64,9 +64,11 @@ public class InquiriesController : ControllerBase
         Name: {inquiry.Name}
         Email: {inquiry.Email}
         Phone: {inquiry.PhoneNumber}
+        Instagram: {inquiry.InstagramHandle ?? "N/A"}
         Event Type: {inquiry.EventType}
         Event Date: {inquiry.EventDate:d}
         Budget: {inquiry.Budget}
+        Wedding Items: {inquiry.WeddingItems ?? "N/A"}
         Referral Source: {inquiry.ReferralSource}
 ");
 

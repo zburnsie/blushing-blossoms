@@ -7,6 +7,7 @@ type Inquiry = {
   name: string;
   phoneNumber: string;
   email: string;
+  instagramHandle: string | null;
   eventType: string;
   bookingStage: string;
   eventLocation: string;
@@ -93,6 +94,10 @@ export default function AdminInquiries() {
             <strong>Phone:</strong> {inq.phoneNumber}
           </p>
           <p>
+            <strong>Instagram:</strong>{" "}
+            {inq.instagramHandle ? inq.instagramHandle : "N/A"}
+          </p>
+          <p>
             <strong>Event Type:</strong> {inq.eventType}
           </p>
           <p>
@@ -109,7 +114,11 @@ export default function AdminInquiries() {
           </p>
           <p>
             <strong>Submitted:</strong>{" "}
-            {new Date(inq.createdAt).toLocaleString()}
+            {new Date(inq.createdAt + "Z").toLocaleString("en-US", {
+              timeZone: "America/Denver",
+              dateStyle: "medium",
+              timeStyle: "short",
+            })}
           </p>
 
           <button

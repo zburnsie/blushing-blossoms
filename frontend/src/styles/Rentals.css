@@ -5,7 +5,7 @@
   color: #2b2b2b;
 }
 
-/* Centered container like your other pages */
+/* Centered container */
 .rentals-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -19,15 +19,12 @@
 
 .rent-title {
   margin: 0 0 1rem;
-  font-family: "Fraunces", serif;
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 400;
-  color: #2b2b2b;
 }
 
 .rent-text {
   margin: 0 auto;
-  font-family: "Fraunces", serif;
   font-size: 1.05rem;
   line-height: 1.8;
   color: #5a5a5a;
@@ -43,16 +40,16 @@
 
 /* Card */
 .rental-card {
-  background: #FFF9F2;
+  background: #fff9f2;
   border: 1px solid rgba(45, 45, 45, 0.12);
-  border-radius: 0; /* match your site: NO rounding */
-  overflow: hidden; /* keeps image clean */
+  border-radius: 0;
+  overflow: hidden;
 }
 
-/* Image styling: less “square”, more editorial */
+/* Image */
 .rental-imgFrame {
   width: 100%;
-  aspect-ratio: 15 / 16;  /* less tall than 4/5, more natural */
+  aspect-ratio: 15 / 16;
   overflow: hidden;
   background: #f3f1f1;
 }
@@ -62,7 +59,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transform: scale(1);
   transition: transform 400ms ease;
 }
 
@@ -77,46 +73,118 @@
 }
 
 .rental-name {
-  margin: 0 0 0.75rem;
-  font-weight: 400;
+  margin-bottom: 0.75rem;
   font-size: 1.6rem;
-  color: #2b2b2b;
 }
 
 .rental-desc {
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1.25rem;
   max-width: 48ch;
   color: #5a5a5a;
   line-height: 1.7;
-  font-size: 1rem;
 }
 
-/* Button: match your site’s outlined CTA, blush hover fill */
-.rent-btn {
-  display: inline-flex;
-  align-items: center;
+/* Quantity row */
+.rental-qty {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 0.75rem 0 1rem;
+}
 
+.rental-qty label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Quantity input */
+.rental-qty input[type="number"] {
+  width: 70px;
+  padding: 6px 10px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #333;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rental-qty input[type="number"]:focus {
+  outline: none;
+  border-color: #844f4f;
+  box-shadow: 0 0 0 2px rgba(132, 79, 79, 0.15);
+}
+
+/* Remove number spinners */
+.rental-qty input::-webkit-inner-spin-button,
+.rental-qty input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.rental-qty input {
+  -moz-appearance: textfield;
+}
+
+/* Picture frame variant quantities */
+.rental-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0.75rem 0 1rem;
+}
+
+.variant-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.variant-row label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Match quantity input styling */
+.variant-row input[type="number"] {
+  width: 70px;
+  padding: 6px 10px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #333;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.variant-row input[type="number"]:focus {
+  outline: none;
+  border-color: #844f4f;
+  box-shadow: 0 0 0 2px rgba(132, 79, 79, 0.15);
+}
+
+/* Button */
+.rent-btn {
   height: 48px;
   padding: 0 2.2rem;
-
   border: 1px solid #2b2b2b;
   background: transparent;
   color: #2b2b2b;
-
   font-family: "Fraunces", serif;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-size: 0.9rem;
-
   cursor: pointer;
-  transition: background-color 250ms ease, color 250ms ease, transform 200ms ease, opacity 200ms ease;
+  transition: background-color 250ms ease, color 250ms ease,
+    transform 200ms ease;
 }
 
-/* Blush hover */
 .rent-btn:hover {
-  background: #844F4F; /* your blush navbar */
-  border-color: #844F4F;
+  background: #844f4f;
+  border-color: #844f4f;
   color: #ffffff;
   transform: translateY(-1px);
 }
@@ -129,12 +197,11 @@
   }
 }
 
-/* Mobile spacing */
+/* Mobile */
 @media (max-width: 768px) {
   .rentals-page {
     padding: 3.5rem 1rem;
   }
-
   .rental-grid {
     gap: 2rem;
   }
