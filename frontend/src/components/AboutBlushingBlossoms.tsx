@@ -26,14 +26,14 @@ export default function AboutBlushingBlossoms() {
 
 
           <p>
-            Founded by Ashlyn Burnside, BlushingBlossoms.co is a floral design
+            Founded by Ashlyn Burnside, Blushing Blossoms.Co is a floral design
             studio creating florals for weddings, events, and everyday moments.
             What began as a personal creative outlet has grown into a small
             business built on thoughtful design and care.
           </p>
 
           <p>
-            Florals at BlushingBlossoms.co are designed with depth and texture,
+            Florals at Blushing Blossoms.Co are designed with depth and texture,
             using shape, movement, and natural elements to create layered,
             expressive arrangements. Each design reflects the couple it is for,
             highlighting their style and telling their love story through

@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Inquiry from "./pages/Inquiry";
@@ -9,23 +10,23 @@ import AdminLogin from "./pages/AdminLogin";
 import Pricing from "./pages/Pricing";
 import RentalRequest from "./pages/RentalRequest";
 
-function App() {
-  return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/rentals" element={<Rentals />} />
-        <Route path="/inquiry" element={<Inquiry />} />
-        <Route path="/pricing" element={<Pricing />} />
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "gallery", element: <Gallery /> },
+      { path: "rentals", element: <Rentals /> },
+      { path: "inquiry", element: <Inquiry /> },
+      { path: "pricing", element: <Pricing /> },
+      { path: "rentals/request", element: <RentalRequest /> },
+      { path: "admin/login", element: <AdminLogin /> },
+      { path: "admin/inquiries", element: <AdminInquiries /> },
+    ],
+  },
+]);
 
-        <Route path="/admin/inquiries" element={<AdminInquiries />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/inquiries" element={<AdminInquiries />} />
-        <Route path="/rentals/request" element={<RentalRequest />} />
-      </Route>
-    </Routes>
-  );
+export default function App() {
+  return <RouterProvider router={router} />;
 }
-
-export default App;

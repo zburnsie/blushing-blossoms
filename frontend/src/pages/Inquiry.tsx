@@ -191,7 +191,6 @@ export default function Inquiry() {
         <label className="form-label">BUDGET</label>
         <div className="radio-stack">
           {[
-            "500-1000",
             "1000-1500",
             "1500-2000",
             "2000-3000",
