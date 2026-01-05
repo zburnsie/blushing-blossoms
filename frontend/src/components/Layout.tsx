@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, ScrollRestoration } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import "./Layout.css";
@@ -9,6 +9,7 @@ export default function Layout() {
 
   return (
     <div className={`layout ${isHome ? "is-home" : ""}`}>
+      <ScrollRestoration />
       {!isHome && <Navbar />}
 
       <main className="site-main">
@@ -19,4 +20,3 @@ export default function Layout() {
     </div>
   );
 }
-
