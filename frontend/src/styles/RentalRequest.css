@@ -1,116 +1,162 @@
-/* Page */
+/* ===== Rentals page (match Inquiry styling) ===== */
+
+/* Page stays white */
 .rental-request-page {
-  padding: 4.5rem 1.25rem;
+  padding: 0rem 1rem; /* same breathing room as inquiry */
   font-family: "Fraunces", serif;
-  color: #2b2b2b;
+  color: #2d2d2d;
 }
 
-.form-container {
-  max-width: 720px;
+/* Soft container for the form */
+.rental-request-page .form-container {
+  background: #FFF9F2;
+  max-width: 900px; /* match inquiry width */
   margin: 0 auto;
+  padding: 2rem 3rem;
+  border-radius: 12px;
 }
 
 /* Heading */
-.heading-wrap {
+.rental-request-page .heading-wrap {
+  margin-bottom: 4rem; /* match inquiry */
   text-align: center;
-  margin-bottom: 3rem;
 }
 
-.subtitle {
-  color: #5a5a5a;
+.rental-request-page h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.rental-request-page .subtitle {
+  font-size: 1.125rem;
+  opacity: 0.7;
+}
+
+/* Form layout */
+.rental-request-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; /* match inquiry */
+}
+
+.rental-request-page .form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.rental-request-page .form-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+/* Inputs */
+.rental-request-page .form-input {
+  width: 100%;
+  padding: 14px 14px;
+  border: 1px solid rgba(45, 45, 45, 0.25);
+  border-radius: 6px;
+  outline: none;
+  background-color: #FFF9F2; /* same “soft” input feel */
+  font-family: "Fraunces", serif;
   font-size: 1rem;
 }
 
-/* Form fields */
-.form-field {
-  margin-bottom: 1.75rem;
+.rental-request-page .form-input:focus {
+  border-color: rgba(45, 45, 45, 0.55);
 }
 
-.form-label {
+/* Checkbox / radio stacks (match inquiry) */
+.rental-request-page .checkbox-stack label,
+.rental-request-page .radio-stack label {
   display: block;
-  margin-bottom: 0.4rem;
-  font-size: 0.9rem;
-  color: #444;
+  margin: 8px 0;
+  font-size: 1rem;
 }
 
-.form-input {
-  width: 100%;
-  padding: 0.6rem 0.7rem;
-  border: 1px solid #ddd;
-  background: #fff;
-  font-family: inherit;
-  font-size: 0.95rem;
+.rental-request-page input[type="radio"],
+.rental-request-page input[type="checkbox"] {
+  margin-right: 10px;
+  transform: translateY(1px);
 }
 
-.form-input:focus {
-  outline: none;
-  border-color: #844f4f;
-  box-shadow: 0 0 0 2px rgba(132, 79, 79, 0.15);
-}
-
-/* Checkbox + qty layout */
-.checkbox-stack > div {
+/* If your rentals page has checkbox rows with qty inputs next to them */
+.rental-request-page .checkbox-stack > div {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin: 8px 0;
 }
 
-.checkbox-stack label {
+.rental-request-page .checkbox-stack > div label {
   display: flex;
   align-items: center;
   gap: 6px;
+  margin: 0;
 }
 
-/* Quantity input */
-.checkbox-stack input[type="number"] {
-  width: 70px;
-  padding: 6px 10px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  text-align: center;
-  border: 1px solid #ddd;
-  background: #fff;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.checkbox-stack input[type="number"]:focus {
+/* Quantity input (styled like inquiry inputs) */
+.rental-request-page .checkbox-stack input[type="number"] {
+  width: 90px;
+  padding: 14px 14px;
+  border: 1px solid rgba(45, 45, 45, 0.25);
+  border-radius: 6px;
   outline: none;
-  border-color: #844f4f;
-  box-shadow: 0 0 0 2px rgba(132, 79, 79, 0.15);
+  background-color: #FFF9F2;
+  font-family: "Fraunces", serif;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.rental-request-page .checkbox-stack input[type="number"]:focus {
+  border-color: rgba(45, 45, 45, 0.55);
 }
 
 /* Submit */
-.submit-wrap {
-  margin-top: 2rem;
-  text-align: center;
+.rental-request-page .submit-wrap {
+  padding-top: 1.5rem; /* match inquiry */
 }
 
-.submit-btn {
-  height: 48px;
-  padding: 0 2.5rem;
-  border: 1px solid #2b2b2b;
-  background: transparent;
-  color: #2b2b2b;
-  font-family: "Fraunces", serif;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+.rental-request-page .submit-btn {
+  width: 100%;
+  background: #2d2d2d;
+  color: #FFF9F2;
+  padding: 16px 32px;
+  border: none;
   cursor: pointer;
-  transition: background-color 250ms ease, color 250ms ease;
+  transition: background-color 300ms ease;
+  font-family: "Fraunces", serif;
+  font-size: 1rem;
 }
 
-.submit-btn:hover {
-  background: #844f4f;
-  border-color: #844f4f;
-  color: #fff;
+.rental-request-page .submit-btn:hover {
+  background: #1a1a1a;
 }
 
 /* Messages */
-.success {
-  margin-top: 1rem;
-  color: #2e6f4e;
+.rental-request-page .success {
+  color: #1f7a3a;
 }
 
-.error {
-  margin-top: 1rem;
-  color: #9b2c2c;
+.rental-request-page .error {
+  color: #c0392b;
+}
+
+/* Mobile-friendly padding */
+@media (max-width: 768px) {
+  .rental-request-page .form-container {
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* Box sizing parity */
+.rental-request-page *,
+.rental-request-page *::before,
+.rental-request-page *::after {
+  box-sizing: border-box;
 }

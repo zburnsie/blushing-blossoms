@@ -26,7 +26,7 @@
 }
 
 .nav-logo img {
-  height: 120px;           /* increase/decrease logo size */
+  height: 90px;           /* increase/decrease logo size */
   width: auto;
   margin-top: 0;
 }
@@ -48,7 +48,7 @@
   /* match the “airy” reference vibe */
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 400;
 }
 
@@ -71,7 +71,7 @@
   font-family: "Fraunces", serif;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
 }
 
 .contact-btn:hover {
