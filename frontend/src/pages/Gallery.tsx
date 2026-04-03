@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Gallery.css";
 import {
@@ -11,6 +11,7 @@ export default function Gallery() {
   const [weddings, setWeddings] = useState<WeddingFolder[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const cardsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     async function load() {
@@ -23,9 +24,34 @@ export default function Gallery() {
         setLoading(false);
       }
     }
-
     load();
   }, []);
+
+  // Fade-in cards as they scroll into view
+  useEffect(() => {
+    if (weddings.length === 0) return;
+
+    const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    if (prefersReduced) {
+      cardsRef.current.forEach((el) => el?.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "80px 0px" }
+    );
+
+    cardsRef.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, [weddings]);
 
   return (
     <div className="gallery-page">
@@ -42,12 +68,13 @@ export default function Gallery() {
 
         {!loading && !error && weddings.length > 0 && (
           <div className="wedding-grid">
-            {weddings.map((wedding) => (
+            {weddings.map((wedding, i) => (
               <Link
                 key={wedding.id}
                 to={`/gallery/${wedding.id}`}
                 state={{ name: wedding.name }}
                 className="wedding-card"
+                ref={(el) => { cardsRef.current[i] = el; }}
               >
                 <div className="wedding-card-img">
                   {wedding.coverImageId ? (
@@ -55,6 +82,7 @@ export default function Gallery() {
                       src={driveImageUrl(wedding.coverImageId)}
                       alt={wedding.name}
                       loading="lazy"
+                      decoding="async"
                     />
                   ) : (
                     <div className="wedding-card-placeholder" />
