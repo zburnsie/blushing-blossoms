@@ -1,8 +1,8 @@
 .review-banner {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: calc(100% + 3rem);
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
 
   min-height: 420px;
   padding: 4.5rem 1.5rem;

@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Home.css";
 import AboutBlushingBlossoms from "../components/AboutBlushingBlossoms";
 import Navbar from "../components/Navbar";
 import Services from "../components/Services";
 import ReviewBanner from "../components/ReviewBanner";
 import { Link } from "react-router-dom";
+import { FaInstagram, FaPinterestP } from "react-icons/fa";
 
 
 const HERO_IMAGES = [
@@ -17,26 +18,9 @@ const HERO_IMAGES = [
 ];
 
 export default function Home() {
-  const heroRef = useRef<HTMLElement | null>(null);
-  const [navSticky, setNavSticky] = useState(false);
-
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // 1) Sticky nav AFTER hero
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setNavSticky(!entry.isIntersecting),
-      { threshold: 0.01 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  // 2) Hero slideshow
+  // Hero slideshow
   useEffect(() => {
     if (HERO_IMAGES.length < 2) return;
 
@@ -50,7 +34,7 @@ export default function Home() {
   return (
     <div className="home-page">
       {/* HERO */}
-      <section ref={heroRef} className="hero">
+      <section className="hero">
         {HERO_IMAGES.map((src, i) => (
           <div
             key={src}
@@ -60,6 +44,15 @@ export default function Home() {
         ))}
 
         <div className="hero-dark-overlay" />
+
+        <div className="hero-social">
+          <a href="https://www.instagram.com/blushingblossoms.co/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <FaInstagram />
+          </a>
+          <a href="https://pin.it/36MmGCGYh" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+            <FaPinterestP />
+          </a>
+        </div>
 
         <div className="hero-content">
           <img
@@ -72,8 +65,8 @@ export default function Home() {
 
 
 
-      {/* NAV (becomes sticky after hero) */}
-      <div className={`nav-wrap ${navSticky ? "is-sticky" : ""}`}>
+      {/* NAV — sticky via CSS after hero scrolls away */}
+      <div className="nav-wrap">
         <Navbar />
       </div>
 

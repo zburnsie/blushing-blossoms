@@ -3,7 +3,9 @@
 .site-header {
   background: #844F4F;
   width: 100%;
-  height: 10%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 /* One clean row, vertically centered like the reference */

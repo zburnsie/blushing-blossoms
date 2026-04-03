@@ -1,67 +1,87 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Gallery.css";
+import {
+  getWeddingFolders,
+  getFolderImages,
+  driveThumbnailUrl,
+  type WeddingFolder,
+} from "../services/driveService";
 
-const IMAGE_COUNT = 56;
+const ROOT_FOLDER_ID = import.meta.env.VITE_DRIVE_FOLDER_ID as string;
 
-const images = Array.from({ length: IMAGE_COUNT }, (_, i) => {
-  const n = i + 1;
-  return `/images/GalleryImages/gal${n}.JPG`;
-});
+interface WeddingCard extends WeddingFolder {
+  coverImageId?: string;
+}
 
 export default function Gallery() {
-  const itemsRef = useRef<(HTMLElement | null)[]>([]);
+  const [weddings, setWeddings] = useState<WeddingCard[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia?.(
-      "(prefers-reduced-motion: reduce)"
-    )?.matches;
+    async function load() {
+      try {
+        const folders = await getWeddingFolders(ROOT_FOLDER_ID);
 
-    if (prefersReduced) {
-      itemsRef.current.forEach((el) => el?.classList.add("is-visible"));
-      return;
+        const cards = await Promise.all(
+          folders.map(async (folder) => {
+            const images = await getFolderImages(folder.id, 1);
+            return { ...folder, coverImageId: images[0]?.id };
+          })
+        );
+
+        setWeddings(cards);
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "150px 0px" }
-    );
-
-    itemsRef.current.forEach((el) => el && observer.observe(el));
-
-    return () => observer.disconnect();
+    load();
   }, []);
 
   return (
     <div className="gallery-page">
       <div className="gallery-wrap">
         <h1 className="gallery-title">Gallery</h1>
+        <p className="gallery-subtitle">A look into the weddings and events we've had the joy of designing for.</p>
 
-        <section className="masonry">
-          {images.map((src, i) => (
-            <figure
-              className="masonry-item"
-              key={src}
-              ref={(el) => {
-                itemsRef.current[i] = el;
-              }}
-            >
-              <img
-                className="masonry-img"
-                src={src}
-                alt="Blushing Blossoms gallery"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-          ))}
-        </section>
+        {loading && <p className="gallery-status">Loading...</p>}
+        {error && <p className="gallery-status">Unable to load gallery right now. Please check back soon.</p>}
+
+        {!loading && !error && weddings.length === 0 && (
+          <p className="gallery-status">Gallery coming soon.</p>
+        )}
+
+        {!loading && !error && weddings.length > 0 && (
+          <div className="wedding-grid">
+            {weddings.map((wedding) => (
+              <Link
+                key={wedding.id}
+                to={`/gallery/${wedding.id}`}
+                state={{ name: wedding.name }}
+                className="wedding-card"
+              >
+                <div className="wedding-card-img">
+                  {wedding.coverImageId ? (
+                    <img
+                      src={driveThumbnailUrl(wedding.coverImageId, 800)}
+                      alt={wedding.name}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="wedding-card-placeholder" />
+                  )}
+                </div>
+                <div className="wedding-card-info">
+                  <h2 className="wedding-card-name">{wedding.name}</h2>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

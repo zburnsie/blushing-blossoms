@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Inquiry from "./pages/Inquiry";
 import Gallery from "./pages/Gallery";
+import WeddingGallery from "./pages/WeddingGallery";
 import Rentals from "./pages/Rentals";
 import AdminInquiries from "./pages/AdminInquiries";
 import AdminLogin from "./pages/AdminLogin";
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "gallery", element: <Gallery /> },
+      { path: "gallery/:folderId", element: <WeddingGallery /> },
       { path: "rentals", element: <Rentals /> },
       { path: "inquiry", element: <Inquiry /> },
       { path: "pricing", element: <Pricing /> },
