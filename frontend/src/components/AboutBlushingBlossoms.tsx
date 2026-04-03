@@ -8,12 +8,12 @@ export default function AboutBlushingBlossoms() {
         <img className="about-layover" src="/images/BlushFlower.png" alt="" aria-hidden="true" />
 
         {/* Image */}
-        <Link to="/" className="about-image">
+        <div className="about-image">
           <img
             src="/images/AshlynClose.png"
             alt="Ashlyn from Blushing Blossoms"
           />
-        </Link>
+        </div>
 
         {/* Text */}
         <div className="about-text">

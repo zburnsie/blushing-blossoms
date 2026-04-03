@@ -24,7 +24,12 @@ export default function AdminLogin() {
   }
 
   return (
+    <div>
+      <div className="login-logo">
+        <img src="/images/login.png" alt="Login illustration" />
+      </div>
     <div className="admin-login-page">
+      
       <div className="admin-login-card">
         <div className="admin-login-heading">
           <h1>Admin Login</h1>
@@ -57,5 +62,6 @@ export default function AdminLogin() {
         </form>
       </div>
     </div>
+  </div>
   );
 }

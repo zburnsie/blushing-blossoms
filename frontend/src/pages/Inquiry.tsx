@@ -75,6 +75,22 @@ export default function Inquiry() {
 
   return (
     <div className="inquiry-page">
+      <div className="inquiry-layout">
+        {/* LEFT: images */}
+        <div className="inquiry-images">
+          <div className="side-img-frame">
+            <img src="/images/InquiryImages/inquiry1.JPG" alt="" />
+          </div>
+          <div className="side-img-frame">
+            <img src="/images/InquiryImages/inquiry3.JPG" alt="" />
+          </div>
+          <div className="side-img-frame">
+            <img src="/images/InquiryImages/inquiry4.JPG" alt="" />
+          </div>
+        </div>
+
+        {/* RIGHT: form */}
+        <div className="inquiry-form-side">
       <div className="form-container">
         <div className="heading-wrap">
           <h1>Inquiry</h1>
@@ -324,6 +340,8 @@ export default function Inquiry() {
           </div>
         </form>
       </div>
+        </div>{/* end inquiry-form-side */}
+      </div>{/* end inquiry-layout */}
     </div>
   );
 }

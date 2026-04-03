@@ -57,6 +57,19 @@ export default function Services() {
         { src: "/images/services/arrangements3.JPG"},
       ],
     },
+    {
+      kicker: "DIY Bridesmaid Florals",
+      title: "Bouquet Kits",
+      description:
+        "Give your bridesmaids the experience of making their own bouquets. Our DIY bouquet kits come with fresh florals, greenery, and everything they need for a fun, hands-on activity on your wedding day.",
+      ctaLabel: "Inquire",
+      ctaTo: "/inquiry",
+      images: [
+        { src: "/images/services/kits1.JPG"},
+        { src: "/images/services/kits2.JPG"},
+        { src: "/images/services/kits3.JPG"},
+      ],
+    },
   ],
   []
 );
