@@ -6,7 +6,8 @@ import { getFolderImages, driveImageUrl } from "../services/driveService";
 export default function WeddingGallery() {
   const { folderId } = useParams<{ folderId: string }>();
   const location = useLocation();
-  const weddingName = (location.state as { name?: string })?.name ?? "Wedding";
+  const rawName = (location.state as { name?: string })?.name ?? "Wedding";
+  const weddingName = rawName.replace(/^\d+-/, "");
 
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);

@@ -3,34 +3,19 @@ import { Link } from "react-router-dom";
 import "../styles/Gallery.css";
 import {
   getWeddingFolders,
-  getFolderImages,
-  driveThumbnailUrl,
+  driveImageUrl,
   type WeddingFolder,
 } from "../services/driveService";
 
-const ROOT_FOLDER_ID = import.meta.env.VITE_DRIVE_FOLDER_ID as string;
-
-interface WeddingCard extends WeddingFolder {
-  coverImageId?: string;
-}
-
 export default function Gallery() {
-  const [weddings, setWeddings] = useState<WeddingCard[]>([]);
+  const [weddings, setWeddings] = useState<WeddingFolder[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     async function load() {
       try {
-        const folders = await getWeddingFolders(ROOT_FOLDER_ID);
-
-        const cards = await Promise.all(
-          folders.map(async (folder) => {
-            const images = await getFolderImages(folder.id, 1);
-            return { ...folder, coverImageId: images[0]?.id };
-          })
-        );
-
+        const cards = await getWeddingFolders();
         setWeddings(cards);
       } catch {
         setError(true);
@@ -67,7 +52,7 @@ export default function Gallery() {
                 <div className="wedding-card-img">
                   {wedding.coverImageId ? (
                     <img
-                      src={driveThumbnailUrl(wedding.coverImageId, 800)}
+                      src={driveImageUrl(wedding.coverImageId)}
                       alt={wedding.name}
                       loading="lazy"
                     />
@@ -76,7 +61,7 @@ export default function Gallery() {
                   )}
                 </div>
                 <div className="wedding-card-info">
-                  <h2 className="wedding-card-name">{wedding.name}</h2>
+                  <h2 className="wedding-card-name">{wedding.name.replace(/^\d+-/, "")}</h2>
                 </div>
               </Link>
             ))}
