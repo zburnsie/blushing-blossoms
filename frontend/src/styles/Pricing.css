@@ -128,7 +128,34 @@
 }
 
 @media (max-width: 768px) {
+  .pricing-layout {
+    grid-template-columns: 1fr;
+    padding: 2rem 0.75rem;
+    gap: 2rem;
+  }
+
+  /* Hide side images on mobile — they crowd the pricing list */
+  .pricing-images {
+    display: none;
+  }
+
   .pricing-container {
-    padding: 3rem 1.5rem;
+    padding: 2rem 1.25rem;
+  }
+
+  .pricing-header h1 {
+    font-size: 2rem;
+  }
+
+  .pricing-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .pricing-section h2 {
+    font-size: 1.4rem;
+  }
+
+  .pricing-item {
+    font-size: 0.95rem;
   }
 }

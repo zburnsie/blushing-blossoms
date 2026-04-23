@@ -39,7 +39,10 @@ export default function Home() {
           <div
             key={src}
             className={`hero-bg ${i === activeIndex ? "is-active" : ""}`}
-            style={{ backgroundImage: `url(${src})` }}
+            style={{
+              backgroundImage: `url(${src})`,
+              backgroundPosition: i === 4 || i === 5 ? "30% 20%" : "center 20%",
+            }}
           />
         ))}
 

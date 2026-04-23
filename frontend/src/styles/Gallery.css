@@ -18,6 +18,10 @@
   padding-top: 2rem;
 }
 
+.gallery-title + .masonry {
+  margin-top: 3rem;
+}
+
 .gallery-subtitle {
   font-family: "Fraunces", serif;
   font-size: 1rem;
@@ -54,29 +58,36 @@
 
 .wedding-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 2rem;
+  row-gap: 3.5rem;
 }
 
 .wedding-card {
   display: block;
   text-decoration: none;
   color: inherit;
-  background: #fff;
-  border-radius: 2px;
   overflow: hidden;
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  position: relative;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms ease, transform 600ms ease;
 }
 
-.wedding-card:hover {
+.wedding-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wedding-card.is-visible:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
 }
 
 .wedding-card-img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
+  position: relative;
   background: #ede5db;
 }
 
@@ -99,13 +110,14 @@
 }
 
 .wedding-card-info {
-  padding: 1.25rem 1.5rem 1.5rem;
+  padding: 0.75rem 0 0;
+  text-align: center;
 }
 
 .wedding-card-name {
   margin: 0;
   font-family: "Fraunces", serif;
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: 400;
   color: #2b2b2b;
 }
@@ -120,6 +132,7 @@
 .masonry-item {
   break-inside: avoid;
   margin: 0 0 18px;
+  min-height: 200px;
 
   opacity: 0;
   transform: translateY(10px);
@@ -144,7 +157,7 @@
 
 @media (max-width: 800px) {
   .masonry { column-count: 2; }
-  .wedding-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .wedding-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
 }
 
 @media (max-width: 500px) {
@@ -153,7 +166,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .masonry-item {
+  .masonry-item,
+  .wedding-card {
     transition: none;
     opacity: 1;
     transform: none;
