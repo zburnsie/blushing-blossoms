@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
 import "../styles/Gallery.css";
-import { getFolderImages, driveThumbnailUrl } from "../services/driveService";
+import { getFolderImages, driveImageUrl } from "../services/driveService";
 
 const CONCURRENT = 3;
 
@@ -46,7 +46,7 @@ export default function WeddingGallery() {
     setSrcs((prev) => {
       const next = [...prev];
       for (let i = 0; i < initial; i++) {
-        next[i] = driveThumbnailUrl(fileIds[i], 800);
+        next[i] = driveImageUrl(fileIds[i]);
       }
       return next;
     });
@@ -62,7 +62,7 @@ export default function WeddingGallery() {
       nextQueue.current = nextIdx + 1;
       setSrcs((prev) => {
         const next = [...prev];
-        next[nextIdx] = driveThumbnailUrl(fileIdsRef.current[nextIdx], 800);
+        next[nextIdx] = driveImageUrl(fileIdsRef.current[nextIdx]);
         return next;
       });
     }

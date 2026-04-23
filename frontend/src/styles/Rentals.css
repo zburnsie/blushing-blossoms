@@ -200,9 +200,19 @@
 /* Mobile */
 @media (max-width: 768px) {
   .rentals-page {
-    padding: 3.5rem 1rem;
+    padding: 3rem 1rem;
   }
+
   .rental-grid {
+    grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  .rent-title {
+    font-size: 2rem;
+  }
+
+  .rental-body {
+    padding: 1.25rem 1rem 1.5rem;
   }
 }

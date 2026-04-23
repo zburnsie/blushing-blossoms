@@ -10,6 +10,7 @@ import AdminInquiries from "./pages/AdminInquiries";
 import AdminLogin from "./pages/AdminLogin";
 import Pricing from "./pages/Pricing";
 import RentalRequest from "./pages/RentalRequest";
+import About from "./pages/About";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: "rentals", element: <Rentals /> },
       { path: "inquiry", element: <Inquiry /> },
       { path: "pricing", element: <Pricing /> },
+      { path: "about", element: <About /> },
       { path: "rentals/request", element: <RentalRequest /> },
       { path: "admin/login", element: <AdminLogin /> },
       { path: "admin/inquiries", element: <AdminInquiries /> },

@@ -8,32 +8,27 @@
   z-index: 1000;
 }
 
-/* One clean row, vertically centered like the reference */
 .header-inner {
   padding-right: 1.5rem;
   padding-left: 1.5rem;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
 }
 
-
-/* Left group: logo + menu all together */
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 2.25rem;           /* space between logo and menu */
+  gap: 2.25rem;
 }
 
 .nav-logo img {
-  height: 90px;           /* increase/decrease logo size */
+  height: 90px;
   width: auto;
   margin-top: 0;
 }
 
-/* Menu */
 .nav {
   display: flex;
   align-items: center;
@@ -46,8 +41,6 @@
   color: #ffffff;
   text-decoration: none;
   font-family: "Fraunces", serif;
-
-  /* match the “airy” reference vibe */
   text-transform: uppercase;
   letter-spacing: 0.22em;
   font-size: 0.75rem;
@@ -61,15 +54,12 @@
 .contact-btn {
   display: inline-flex;
   align-items: center;
-
   height: 44px;
   padding: 0 1.5rem;
-
   border: 1.5px solid #ffffff;
-  border-radius: 0;       /* reference looks more square than pill */
+  border-radius: 0;
   color: #ffffff;
   text-decoration: none;
-
   font-family: "Fraunces", serif;
   text-transform: uppercase;
   letter-spacing: 0.22em;
@@ -81,11 +71,106 @@
   color: #844F4F;
 }
 
-/* If you want ZERO left/right padding on the navbar (edge-to-edge content): */
-/* .header-inner { padding: 0; } */
+/* ── Hamburger button ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
 
-/* Responsive */
-@media (max-width: 900px) {
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile dropdown ── */
+.nav-mobile {
+  display: none;
+  background: #844F4F;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+
+.nav-mobile.is-open {
+  max-height: 500px;
+}
+
+.nav-mobile-links {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1.5rem 1.5rem;
+  gap: 0;
+}
+
+.nav-mobile-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Fraunces", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.9rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-mobile-links a:last-child {
+  border-bottom: none;
+}
+
+.nav-mobile-cta {
+  margin-top: 1rem;
+  border: 1.5px solid #ffffff !important;
+  text-align: center;
+  padding: 0.75rem 0 !important;
+  border-bottom: 1.5px solid #ffffff !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .nav,
+  .nav-right {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .nav-mobile {
+    display: block;
+  }
+
+  .header-inner {
+    padding: 0 1.25rem;
+    height: 72px;
+  }
+
+  .nav-logo img {
+    height: 60px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 900px) {
   .header-inner {
     padding: 0 1.25rem;
     height: 88px;

@@ -55,12 +55,29 @@
 /* Mobile tweaks */
 @media (max-width: 768px) {
   .review-banner {
-    min-height: 360px;
-    padding: 3.5rem 1.25rem;
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
+    margin-right: -1rem;
+    min-height: 320px;
+    padding: 3rem 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .review-banner-content {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    text-align: center;
   }
 
   .review-quote {
-    font-size: 1.45rem;
+    font-size: 1.4rem;
+    line-height: 1.55;
+  }
+
+  .review-author {
+    font-size: 0.8rem;
+    margin-top: 1.25rem;
   }
 }
 

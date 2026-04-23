@@ -1,0 +1,320 @@
+.about-page {
+  font-family: "Fraunces", serif;
+  color: #2b2b2b;
+}
+
+/* ── Bio section ── */
+
+.about-bio {
+  padding: 5rem 1.5rem 6rem;
+}
+
+.about-bio-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.about-bio-img-wrap {
+  position: sticky;
+  top: 100px;
+}
+
+.about-bio-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.about-logo-wrap {
+  position: relative;
+  width: 320px;
+  height: 150px;
+  margin-bottom: 3.5rem;
+}
+
+.about-flower-mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 115px;
+  height: auto;
+  opacity: 0.35;
+}
+
+.about-logo {
+  position: absolute;
+  top: 14px;
+  left: 60px;
+  width: 310px;
+  height: auto;
+}
+
+.about-greeting {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #8c6a5a;
+  margin: 0 0 1.75rem;
+  font-weight: 400;
+}
+
+.about-bio-text p {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: #3a3a3a;
+  margin: 0 0 1.5rem;
+  max-width: 52ch;
+}
+
+/* ── Favorites section ── */
+
+.about-favs {
+  background: #f5ede5;
+  padding: 6rem 1.5rem;
+}
+
+.about-favs-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-favs-kicker {
+  margin: 0 0 0.75rem;
+  font-family: "Fraunces", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.8rem;
+  color: #6e6a6a;
+  text-align: center;
+}
+
+.about-favs-title {
+  margin: 0 0 4rem;
+  font-family: "Fraunces", serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  color: #2b2b2b;
+  text-align: center;
+}
+
+.about-favs-empty {
+  text-align: center;
+  color: #6e6a6a;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+/* ── Carousel ── */
+
+.about-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.about-carousel-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+}
+
+.about-carousel-frame {
+  flex: 1;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #e8ddd4;
+  border-radius: 2px;
+}
+
+.about-carousel-slide {
+  display: none;
+  height: 100%;
+}
+
+.about-carousel-slide.active {
+  display: block;
+}
+
+.about-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.75);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #2b2b2b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.about-carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.about-carousel-btn--prev {
+  left: -22px;
+}
+
+.about-carousel-btn--next {
+  right: -22px;
+}
+
+/* Dots */
+.about-carousel-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.about-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: #c9b5a8;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.about-carousel-dot.active {
+  background: #8c6a5a;
+  transform: scale(1.3);
+}
+
+/* Thumbnail strip */
+.about-carousel-thumbs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-width: 720px;
+  width: 100%;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.about-carousel-thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.about-carousel-thumb {
+  flex: 0 0 70px;
+  aspect-ratio: 1;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  background: #e8ddd4;
+  transition: border-color 0.2s;
+}
+
+.about-carousel-thumb.active {
+  border-color: #8c6a5a;
+}
+
+.about-carousel-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about-bio-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-bio-img-wrap {
+    position: static;
+  }
+
+  .about-bio-text p {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-bio {
+    padding: 3rem 1.25rem 4rem;
+  }
+
+  .about-logo-wrap {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 2.5rem;
+  }
+
+  .about-flower-mark {
+    width: 18px;
+    opacity: 0.25;
+    top: 8px;
+    left: 4px;
+  }
+
+  .about-logo {
+    width: min(220px, 70vw);
+    left: 30px;
+    top: 6px;
+  }
+
+  .about-greeting {
+    font-size: 1.1rem;
+  }
+
+  .about-bio-text p {
+    font-size: 1rem;
+  }
+
+  .about-favs {
+    padding: 4rem 1.25rem;
+  }
+
+  .about-favs-title {
+    margin-bottom: 2.5rem;
+  }
+
+  /* Carousel arrows tucked inside on mobile */
+  .about-carousel-btn--prev {
+    left: 6px;
+  }
+
+  .about-carousel-btn--next {
+    right: 6px;
+  }
+
+  .about-carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+  }
+
+  .about-carousel-thumb {
+    flex: 0 0 52px;
+  }
+}

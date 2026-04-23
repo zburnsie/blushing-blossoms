@@ -6,45 +6,43 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
-        {/* LEFT: Socials */}
-        <div className="footer-socials">
-          <a
-            href="https://www.instagram.com/blushingblossoms.co/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-          >
-            <FaInstagram />
-          </a>
+        {/* LEFT: placeholder for balance */}
+        <div />
 
-          <a
-            href="https://pin.it/36MmGCGYh"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Pinterest"
-          >
-            <FaPinterestP />
-          </a>
-        </div>
-
-        {/* CENTER: Flower mark */}
+        {/* CENTER: Flower + Socials */}
         <div className="footer-logo">
           <img
             src="/images/BlushFlower.png"
             alt="Blushing Blossoms floral mark"
           />
+          <div className="footer-socials">
+            <a
+              href="https://www.instagram.com/blushingblossoms.co/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://pin.it/36MmGCGYh"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pinterest"
+            >
+              <FaPinterestP />
+            </a>
+          </div>
         </div>
 
         {/* RIGHT: Contact + Admin */}
         <div className="footer-contact">
           <a
-              href="mailto:BlushingBlossoms.co@gmail.com?subject=Floral%20Inquiry"
-              className="footer-email"
-            >
-              BlushingBlossoms.co@gmail.com
+            href="mailto:BlushingBlossoms.co@gmail.com?subject=Floral%20Inquiry"
+            className="footer-email"
+          >
+            BlushingBlossoms.co@gmail.com
           </a>
-
-
           <Link to="/admin/inquiries" className="footer-admin">
             Admin
           </Link>

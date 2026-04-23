@@ -23,7 +23,7 @@ export async function getFolderImages(folderId: string): Promise<DriveFile[]> {
   return res.json();
 }
 
-/** Direct URL for a publicly-shared Drive image. */
-export function driveImageUrl(fileId: string): string {
-  return `https://lh3.googleusercontent.com/d/${fileId}`;
+/** Direct URL for a publicly-shared Drive image, resized to max 1200px. */
+export function driveImageUrl(fileId: string, size = 1200): string {
+  return `https://lh3.googleusercontent.com/d/${fileId}=s${size}`;
 }
