@@ -12,7 +12,7 @@ export default function AdminLogin() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5034/api/admin-auth/login", {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/admin-auth/login`, {
         password,
       });
 

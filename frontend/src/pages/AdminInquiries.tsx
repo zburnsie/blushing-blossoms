@@ -40,7 +40,7 @@ export default function AdminInquiries() {
 
   async function fetchInquiries() {
     try {
-      const response = await axios.get("http://localhost:5034/api/inquiries");
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/inquiries`);
       setInquiries(response.data);
     } catch {
       setError("Failed to load inquiries");
@@ -57,7 +57,7 @@ export default function AdminInquiries() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5034/api/inquiries/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/inquiries/${id}`);
 
       setInquiries((prev) => prev.filter((inq) => inq.id !== id));
     } catch {

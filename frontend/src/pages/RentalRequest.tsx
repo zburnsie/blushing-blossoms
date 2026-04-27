@@ -137,7 +137,7 @@ export default function RentalRequest() {
         })
         .join(" | ");
 
-      const res = await fetch("http://localhost:5034/api/rental-requests", {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/rental-requests`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

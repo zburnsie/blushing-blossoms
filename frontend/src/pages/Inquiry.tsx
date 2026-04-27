@@ -48,7 +48,7 @@ export default function Inquiry() {
     setSuccess(false);
 
     try {
-      await axios.post("http://localhost:5034/api/inquiries", formData);
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/inquiries`, formData);
       setSuccess(true);
 
       setFormData({
