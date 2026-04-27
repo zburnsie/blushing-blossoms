@@ -22,8 +22,7 @@ export default function Pricing() {
               <h2>Floral Design</h2>
               <div className="pricing-list">
                 <div className="pricing-item"><span>Bridal Bouquet</span><span className="price">$350 – $475</span></div>
-                <div className="pricing-item"><span>Groom Boutonniere</span><span className="price">$20+</span></div>
-                <div className="pricing-item"><span>Groomsmen Boutonnieres</span><span className="price">$15+</span></div>
+                <div className="pricing-item"><span>Boutonnieres</span><span className="price">$20+</span></div>
                 <div className="pricing-item"><span>Bridesmaid Bouquets</span><span className="price">$60+</span></div>
                 <div className="pricing-item"><span>Corsages</span><span className="price">$40+</span></div>
                 <div className="pricing-item"><span>Bud Vases</span><span className="price">$7+ each</span></div>
