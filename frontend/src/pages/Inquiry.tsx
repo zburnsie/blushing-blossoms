@@ -15,6 +15,9 @@ export default function Inquiry() {
     colorPalette: "",
     budget: "",
     weddingItems: [] as string[],
+    bridesmaidsCount: "",
+    boutonnieresCount: "",
+    centerpiecesCount: "",
     rentalsInterest: "",
     referralSource: "",
   });
@@ -63,6 +66,9 @@ export default function Inquiry() {
         colorPalette: "",
         budget: "",
         weddingItems: [],
+        bridesmaidsCount: "",
+        boutonnieresCount: "",
+        centerpiecesCount: "",
         rentalsInterest: "",
         referralSource: "",
       });
@@ -232,7 +238,6 @@ export default function Inquiry() {
             </label>
             <div className="radio-stack">
               {[
-                "1000-1500",
                 "1500-2000",
                 "2000-3000",
                 "3000-4000",
@@ -282,6 +287,45 @@ export default function Inquiry() {
                 </label>
               ))}
             </div>
+          </div>
+
+          <div className="form-field">
+            <label className="form-label">HOW MANY BRIDESMAID BOUQUETS? (OPTIONAL)</label>
+            <input
+              className="form-input"
+              type="number"
+              min="0"
+              name="bridesmaidsCount"
+              value={formData.bridesmaidsCount}
+              onChange={handleChange}
+              placeholder="e.g. 4"
+            />
+          </div>
+
+          <div className="form-field">
+            <label className="form-label">HOW MANY BOUTONNIERES? (OPTIONAL)</label>
+            <input
+              className="form-input"
+              type="number"
+              min="0"
+              name="boutonnieresCount"
+              value={formData.boutonnieresCount}
+              onChange={handleChange}
+              placeholder="e.g. 5"
+            />
+          </div>
+
+          <div className="form-field">
+            <label className="form-label">HOW MANY CENTERPIECES? (OPTIONAL)</label>
+            <input
+              className="form-input"
+              type="number"
+              min="0"
+              name="centerpiecesCount"
+              value={formData.centerpiecesCount}
+              onChange={handleChange}
+              placeholder="e.g. 10"
+            />
           </div>
 
           <div className="form-field">
