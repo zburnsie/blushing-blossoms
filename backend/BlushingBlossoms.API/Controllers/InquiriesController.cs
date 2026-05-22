@@ -4,6 +4,7 @@ using BlushingBlossoms.API.DTOs;
 using BlushingBlossoms.API.Models;
 using BlushingBlossoms.API.Data;
 using BlushingBlossoms.API.Services;
+using System.Text.Json;
 
 namespace BlushingBlossoms.API.Controllers;
 
@@ -50,6 +51,7 @@ public class InquiriesController : ControllerBase
             WeddingItems = dto.WeddingItems != null
                 ? string.Join(",", dto.WeddingItems)
                 : null,
+            RentalsInterest = dto.RentalsInterest,
             ReferralSource = dto.ReferralSource,
             CreatedAt = DateTime.UtcNow
         };
@@ -66,16 +68,57 @@ public class InquiriesController : ControllerBase
         Phone: {inquiry.PhoneNumber}
         Instagram: {inquiry.InstagramHandle ?? "N/A"}
         Event Type: {inquiry.EventType}
+        Booking Stage: {inquiry.BookingStage}
+        Event Location: {inquiry.EventLocation}
         Event Date: {inquiry.EventDate:d}
+        Color Palette: {inquiry.ColorPalette ?? "N/A"}
         Budget: {inquiry.Budget}
         Wedding Items: {inquiry.WeddingItems ?? "N/A"}
+        Interested in Rentals: {inquiry.RentalsInterest ?? "N/A"}
         Referral Source: {inquiry.ReferralSource}
 ");
 
         return Ok(new { message = "Inquiry received successfully" });
     }
 
-        // ------------------------------------
+    // ------------------------------------
+    // PUT: /api/inquiries/{id}
+    // ------------------------------------
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateInquiry(int id, UpdateInquiryDto dto)
+    {
+        var inquiry = await _context.Inquiries.FindAsync(id);
+
+        if (inquiry == null)
+            return NotFound();
+
+        inquiry.Name = dto.Name;
+        inquiry.PhoneNumber = dto.PhoneNumber;
+        inquiry.Email = dto.Email;
+        inquiry.InstagramHandle = dto.InstagramHandle;
+        inquiry.EventType = dto.EventType;
+        inquiry.BookingStage = dto.BookingStage;
+        inquiry.EventLocation = dto.EventLocation;
+        inquiry.EventDate = dto.EventDate;
+        inquiry.ColorPalette = dto.ColorPalette;
+        inquiry.Budget = dto.Budget;
+        inquiry.WeddingItems = dto.WeddingItems != null ? string.Join(",", dto.WeddingItems) : null;
+        inquiry.RentalsInterest = dto.RentalsInterest;
+        inquiry.ReferralSource = dto.ReferralSource;
+        inquiry.FlowerCost = dto.FlowerCost;
+        inquiry.FlowerCostItems = dto.FlowerCostItems;
+        inquiry.BookingAmount = dto.BookingAmount;
+        inquiry.WorkflowStages = dto.WorkflowStages != null ? string.Join(",", dto.WorkflowStages) : null;
+        inquiry.Notes = dto.Notes;
+        if (dto.KanbanStage != null) inquiry.KanbanStage = dto.KanbanStage;
+        inquiry.PricingData = dto.PricingData;
+
+        await _context.SaveChangesAsync();
+
+        return Ok(inquiry);
+    }
+
+    // ------------------------------------
     // DELETE: /api/inquiries/{id}
     // ------------------------------------
     [HttpDelete("{id}")]

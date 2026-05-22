@@ -24,6 +24,8 @@ public class CreateInquiryDto
 
     public List<string>? WeddingItems { get; set; }
 
+    public string? RentalsInterest { get; set; }
+
     public string ReferralSource { get; set; } = string.Empty;
 }
 

@@ -54,7 +54,7 @@ export default function Pricing() {
               <h2>Installations</h2>
               <div className="pricing-list">
                 <div className="pricing-item"><span>Full Arch Installation (Heavy Bloom)</span><span className="price">$2,300+</span></div>
-                <div className="pricing-item"><span>Pedestal Arrangements</span><span className="price">$500 each (pedestals not included)</span></div>
+                <div className="pricing-item"><span>Pedestal Arrangements</span><span className="price">$300+ each (pedestals not included)</span></div>
                 <div className="pricing-item"><span>Half Arch Installation (Medium Bloom)</span><span className="price">$1,700+</span></div>
                 <div className="pricing-item"><span>Column Installation (Medium Bloom)</span><span className="price">$1,000+</span></div>
               </div>

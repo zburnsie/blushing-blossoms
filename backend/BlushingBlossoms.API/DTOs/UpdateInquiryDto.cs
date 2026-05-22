@@ -1,42 +1,25 @@
-namespace BlushingBlossoms.API.Models;
+namespace BlushingBlossoms.API.DTOs;
 
-public class Inquiry
+public class UpdateInquiryDto
 {
-    public int Id { get; set; }
-
     public string Name { get; set; } = string.Empty;
-
     public string PhoneNumber { get; set; } = string.Empty;
-
     public string Email { get; set; } = string.Empty;
-
     public string? InstagramHandle { get; set; }
-
     public string EventType { get; set; } = string.Empty;
-
     public string BookingStage { get; set; } = string.Empty;
-
     public string EventLocation { get; set; } = string.Empty;
-
     public DateTime EventDate { get; set; }
-
     public string? ColorPalette { get; set; }
-
     public string Budget { get; set; } = string.Empty;
-
-    public string? WeddingItems { get; set; }
+    public List<string>? WeddingItems { get; set; }
     public string? RentalsInterest { get; set; }
-
     public string ReferralSource { get; set; } = string.Empty;
-
-    public DateTime CreatedAt { get; set; }
-
     public decimal? FlowerCost { get; set; }
     public string? FlowerCostItems { get; set; }
     public decimal? BookingAmount { get; set; }
-    public string? WorkflowStages { get; set; }
+    public List<string>? WorkflowStages { get; set; }
     public string? Notes { get; set; }
-    public string KanbanStage { get; set; } = "New Lead";
+    public string? KanbanStage { get; set; }
     public string? PricingData { get; set; }
 }
-
