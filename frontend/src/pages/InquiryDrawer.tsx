@@ -268,7 +268,7 @@ export default function InquiryDrawer({ inquiry, onClose, onSaved, onDeleted }: 
   }
 
   function toggleWeddingItem(item: string, checked: boolean) {
-    const current = edit.weddingItems;
+    const current = edit!.weddingItems;
     updateEdit("weddingItems", checked ? [...current, item] : current.filter((i) => i !== item));
   }
 
@@ -297,12 +297,12 @@ export default function InquiryDrawer({ inquiry, onClose, onSaved, onDeleted }: 
   }
 
   async function toggleWorkflowStage(stage: string, checked: boolean) {
-    const current = inquiry.workflowStages ? inquiry.workflowStages.split(",") : [];
+    const inq = inquiry!;
+    const current = inq.workflowStages ? inq.workflowStages.split(",") : [];
     const next = checked ? [...current, stage] : current.filter((s) => s !== stage);
-    const updatedInq = { ...inquiry, workflowStages: next.join(",") || null };
     try {
-      const res = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/inquiries/${inquiry.id}`, {
-        ...buildPayload(inquiry, edit, pricing, flowerCost, bookingAmount),
+      const res = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/inquiries/${inq.id}`, {
+        ...buildPayload(inq, edit!, pricing, flowerCost, bookingAmount),
         workflowStages: next.length > 0 ? next : null,
       });
       onSaved(res.data);
@@ -312,11 +312,12 @@ export default function InquiryDrawer({ inquiry, onClose, onSaved, onDeleted }: 
   }
 
   async function handleSave() {
+    const inq = inquiry!;
     setSaving(true);
     try {
       const res = await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/api/inquiries/${inquiry.id}`,
-        buildPayload(inquiry, edit, pricing, flowerCost, bookingAmount)
+        `${import.meta.env.VITE_API_BASE_URL}/api/inquiries/${inq.id}`,
+        buildPayload(inq, edit!, pricing, flowerCost, bookingAmount)
       );
       onSaved(res.data);
     } catch {
@@ -327,16 +328,17 @@ export default function InquiryDrawer({ inquiry, onClose, onSaved, onDeleted }: 
   }
 
   async function handleDelete() {
-    if (!window.confirm(`Delete inquiry for ${inquiry.name}?`)) return;
+    const inq = inquiry!;
+    if (!window.confirm(`Delete inquiry for ${inq.name}?`)) return;
     try {
-      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/inquiries/${inquiry.id}`);
-      onDeleted(inquiry.id);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/inquiries/${inq.id}`);
+      onDeleted(inq.id);
     } catch {
       alert("Failed to delete");
     }
   }
 
-  const workflowSet = new Set(inquiry.workflowStages ? inquiry.workflowStages.split(",") : []);
+  const workflowSet = new Set(inquiry!.workflowStages ? inquiry!.workflowStages.split(",") : []);
   const editingArr = pricing.arrangements.find((a) => a.type === editingRecipe);
 
   return (
