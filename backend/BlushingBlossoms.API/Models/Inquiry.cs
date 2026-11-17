@@ -25,6 +25,11 @@ public class Inquiry
     public string Budget { get; set; } = string.Empty;
 
     public string? WeddingItems { get; set; }
+    public int? BridesmaidBouquetsCount { get; set; }
+    public int? BoutonnieresCount { get; set; }
+    public int? CorsagesCount { get; set; }
+    public int? CenterpiecesCount { get; set; }
+    public string? InstallationDetails { get; set; }
     public string? RentalsInterest { get; set; }
 
     public string ReferralSource { get; set; } = string.Empty;

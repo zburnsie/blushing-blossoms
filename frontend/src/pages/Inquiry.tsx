@@ -2,32 +2,54 @@ import { useState } from "react";
 import axios from "axios";
 import "../styles/Inquiry.css";
 
+// Items that require a "how many?" answer when selected
+const COUNTED_ITEMS = [
+  { item: "Bridesmaid Bouquets", field: "bridesmaidBouquetsCount", label: "HOW MANY BRIDESMAID BOUQUETS?", placeholder: "e.g. 4" },
+  { item: "Boutonnieres", field: "boutonnieresCount", label: "HOW MANY BOUTONNIERES?", placeholder: "e.g. 5" },
+  { item: "Corsages", field: "corsagesCount", label: "HOW MANY CORSAGES?", placeholder: "e.g. 2" },
+  { item: "Centerpieces", field: "centerpiecesCount", label: "HOW MANY CENTERPIECES?", placeholder: "e.g. 10" },
+] as const;
+
+const WEDDING_ITEMS = [
+  "Bridal Bouquet",
+  "Bridesmaid Bouquets",
+  "Boutonnieres",
+  "Corsages",
+  "Centerpieces",
+  "Installations",
+  "Other",
+];
+
+const EMPTY_FORM = {
+  name: "",
+  phoneNumber: "",
+  email: "",
+  instagramHandle: "",
+  eventType: "",
+  bookingStage: "",
+  eventLocation: "",
+  eventDate: "",
+  colorPalette: "",
+  budget: "",
+  weddingItems: [] as string[],
+  bridesmaidBouquetsCount: "",
+  boutonnieresCount: "",
+  corsagesCount: "",
+  centerpiecesCount: "",
+  installationDetails: "",
+  rentalsInterest: "",
+  referralSource: "",
+};
+
 export default function Inquiry() {
-  const [formData, setFormData] = useState({
-    name: "",
-    phoneNumber: "",
-    email: "",
-    instagramHandle: "",
-    eventType: "",
-    bookingStage: "",
-    eventLocation: "",
-    eventDate: "",
-    colorPalette: "",
-    budget: "",
-    weddingItems: [] as string[],
-    bridesmaidsCount: "",
-    boutonnieresCount: "",
-    centerpiecesCount: "",
-    rentalsInterest: "",
-    referralSource: "",
-  });
+  const [formData, setFormData] = useState(EMPTY_FORM);
 
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
   function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -35,12 +57,21 @@ export default function Inquiry() {
 
   function handleCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { value, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      weddingItems: checked
-        ? [...prev.weddingItems, value]
-        : prev.weddingItems.filter((item) => item !== value),
-    }));
+    setFormData((prev) => {
+      const next = {
+        ...prev,
+        weddingItems: checked
+          ? [...prev.weddingItems, value]
+          : prev.weddingItems.filter((item) => item !== value),
+      };
+      // Clear the follow-up answer when an item is unchecked
+      if (!checked) {
+        const counted = COUNTED_ITEMS.find((c) => c.item === value);
+        if (counted) next[counted.field] = "";
+        if (value === "Installations") next.installationDetails = "";
+      }
+      return next;
+    });
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -51,29 +82,20 @@ export default function Inquiry() {
     setSuccess(false);
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/inquiries`, formData);
-      setSuccess(true);
-
-      setFormData({
-        name: "",
-        phoneNumber: "",
-        email: "",
-        instagramHandle: "",
-        eventType: "",
-        bookingStage: "",
-        eventLocation: "",
-        eventDate: "",
-        colorPalette: "",
-        budget: "",
-        weddingItems: [],
-        bridesmaidsCount: "",
-        boutonnieresCount: "",
-        centerpiecesCount: "",
-        rentalsInterest: "",
-        referralSource: "",
+      const toCount = (v: string) => (v === "" ? null : Number(v));
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/inquiries`, {
+        ...formData,
+        bridesmaidBouquetsCount: toCount(formData.bridesmaidBouquetsCount),
+        boutonnieresCount: toCount(formData.boutonnieresCount),
+        corsagesCount: toCount(formData.corsagesCount),
+        centerpiecesCount: toCount(formData.centerpiecesCount),
+        installationDetails: formData.installationDetails.trim() || null,
       });
-    } catch {
-      setError("Something went wrong. Please try again.");
+      setSuccess(true);
+      setFormData(EMPTY_FORM);
+    } catch (err) {
+      const message = axios.isAxiosError(err) ? err.response?.data?.message : undefined;
+      setError(message ?? "Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -238,7 +260,6 @@ export default function Inquiry() {
             </label>
             <div className="radio-stack">
               {[
-                "1500-2000",
                 "2000-3000",
                 "3000-4000",
                 "4000-5000",
@@ -267,14 +288,7 @@ export default function Inquiry() {
               <span className="required">*</span>
             </label>
             <div className="checkbox-stack">
-              {[
-                "Bridal Bouquet",
-                "Boutonnieres",
-                "Bridesmaid Bouquets",
-                "Centerpieces",
-                "Installations",
-                "Other",
-              ].map((item) => (
+              {WEDDING_ITEMS.map((item) => (
                 <label key={item}>
                   <input
                     type="checkbox"
@@ -289,44 +303,40 @@ export default function Inquiry() {
             </div>
           </div>
 
-          <div className="form-field">
-            <label className="form-label">HOW MANY BRIDESMAID BOUQUETS? (OPTIONAL)</label>
-            <input
-              className="form-input"
-              type="number"
-              min="0"
-              name="bridesmaidsCount"
-              value={formData.bridesmaidsCount}
-              onChange={handleChange}
-              placeholder="e.g. 4"
-            />
-          </div>
+          {COUNTED_ITEMS.filter((c) => formData.weddingItems.includes(c.item)).map((c) => (
+            <div className="form-field" key={c.field}>
+              <label className="form-label">
+                {c.label} <span className="required">*</span>
+              </label>
+              <input
+                className="form-input"
+                type="number"
+                min="1"
+                step="1"
+                name={c.field}
+                value={formData[c.field]}
+                onChange={handleChange}
+                placeholder={c.placeholder}
+                required
+              />
+            </div>
+          ))}
 
-          <div className="form-field">
-            <label className="form-label">HOW MANY BOUTONNIERES? (OPTIONAL)</label>
-            <input
-              className="form-input"
-              type="number"
-              min="0"
-              name="boutonnieresCount"
-              value={formData.boutonnieresCount}
-              onChange={handleChange}
-              placeholder="e.g. 5"
-            />
-          </div>
-
-          <div className="form-field">
-            <label className="form-label">HOW MANY CENTERPIECES? (OPTIONAL)</label>
-            <input
-              className="form-input"
-              type="number"
-              min="0"
-              name="centerpiecesCount"
-              value={formData.centerpiecesCount}
-              onChange={handleChange}
-              placeholder="e.g. 10"
-            />
-          </div>
+          {formData.weddingItems.includes("Installations") && (
+            <div className="form-field">
+              <label className="form-label">
+                WHAT KIND OF INSTALLATIONS ARE YOU INTERESTED IN? (OPTIONAL)
+              </label>
+              <textarea
+                className="form-input"
+                name="installationDetails"
+                value={formData.installationDetails}
+                onChange={handleChange}
+                rows={3}
+                placeholder="e.g. arch, hanging installation, aisle meadows... or let us know if you're not sure yet"
+              />
+            </div>
+          )}
 
           <div className="form-field">
             <label className="form-label">

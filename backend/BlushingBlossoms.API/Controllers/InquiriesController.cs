@@ -36,6 +36,25 @@ public class InquiriesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateInquiry(CreateInquiryDto dto)
     {
+        var items = dto.WeddingItems ?? new List<string>();
+
+        // Each counted item that was selected must come with a quantity of at least 1
+        var countChecks = new (string Item, int? Count)[]
+        {
+            ("Bridesmaid Bouquets", dto.BridesmaidBouquetsCount),
+            ("Boutonnieres", dto.BoutonnieresCount),
+            ("Corsages", dto.CorsagesCount),
+            ("Centerpieces", dto.CenterpiecesCount),
+        };
+        foreach (var (item, count) in countChecks)
+        {
+            if (items.Contains(item) && (count == null || count < 1))
+                return BadRequest(new { message = $"Please enter how many {item.ToLower()} you need." });
+        }
+
+        // Only keep counts/details for items that were actually selected
+        int? CountIf(string item, int? count) => items.Contains(item) ? count : null;
+
         var inquiry = new Inquiry
         {
             Name = dto.Name,
@@ -51,6 +70,13 @@ public class InquiriesController : ControllerBase
             WeddingItems = dto.WeddingItems != null
                 ? string.Join(",", dto.WeddingItems)
                 : null,
+            BridesmaidBouquetsCount = CountIf("Bridesmaid Bouquets", dto.BridesmaidBouquetsCount),
+            BoutonnieresCount = CountIf("Boutonnieres", dto.BoutonnieresCount),
+            CorsagesCount = CountIf("Corsages", dto.CorsagesCount),
+            CenterpiecesCount = CountIf("Centerpieces", dto.CenterpiecesCount),
+            InstallationDetails = items.Contains("Installations") && !string.IsNullOrWhiteSpace(dto.InstallationDetails)
+                ? dto.InstallationDetails.Trim()
+                : null,
             RentalsInterest = dto.RentalsInterest,
             ReferralSource = dto.ReferralSource,
             CreatedAt = DateTime.UtcNow
@@ -60,23 +86,11 @@ public class InquiriesController : ControllerBase
         await _context.SaveChangesAsync();
 
         // 🔔 SEND EMAIL NOTIFICATION
-        await _emailService.SendInquiryNotification($@"
-        New Blushing Blossoms Inquiry
-
-        Name: {inquiry.Name}
-        Email: {inquiry.Email}
-        Phone: {inquiry.PhoneNumber}
-        Instagram: {inquiry.InstagramHandle ?? "N/A"}
-        Event Type: {inquiry.EventType}
-        Booking Stage: {inquiry.BookingStage}
-        Event Location: {inquiry.EventLocation}
-        Event Date: {inquiry.EventDate:d}
-        Color Palette: {inquiry.ColorPalette ?? "N/A"}
-        Budget: {inquiry.Budget}
-        Wedding Items: {inquiry.WeddingItems ?? "N/A"}
-        Interested in Rentals: {inquiry.RentalsInterest ?? "N/A"}
-        Referral Source: {inquiry.ReferralSource}
-");
+        await _emailService.SendInquiryNotification(
+            InquiryEmailBuilder.BuildSubject(inquiry),
+            InquiryEmailBuilder.BuildHtml(inquiry),
+            InquiryEmailBuilder.BuildText(inquiry),
+            replyTo: inquiry.Email);
 
         return Ok(new { message = "Inquiry received successfully" });
     }
@@ -103,6 +117,11 @@ public class InquiriesController : ControllerBase
         inquiry.ColorPalette = dto.ColorPalette;
         inquiry.Budget = dto.Budget;
         inquiry.WeddingItems = dto.WeddingItems != null ? string.Join(",", dto.WeddingItems) : null;
+        inquiry.BridesmaidBouquetsCount = dto.BridesmaidBouquetsCount;
+        inquiry.BoutonnieresCount = dto.BoutonnieresCount;
+        inquiry.CorsagesCount = dto.CorsagesCount;
+        inquiry.CenterpiecesCount = dto.CenterpiecesCount;
+        inquiry.InstallationDetails = dto.InstallationDetails;
         inquiry.RentalsInterest = dto.RentalsInterest;
         inquiry.ReferralSource = dto.ReferralSource;
         inquiry.FlowerCost = dto.FlowerCost;

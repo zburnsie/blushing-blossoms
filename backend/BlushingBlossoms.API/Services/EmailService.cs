@@ -13,13 +13,13 @@ public class EmailService
     }
 
     // -----------------------------
-    // Inquiry email (EXISTING)
+    // Inquiry email (HTML, with plain-text fallback)
     // -----------------------------
-    public async Task SendInquiryNotification(string body)
+    public async Task SendInquiryNotification(string subject, string htmlBody, string textBody, string? replyTo)
     {
         var emailSettings = _config.GetSection("Email");
 
-        var smtpClient = new SmtpClient(emailSettings["SmtpServer"])
+        using var smtpClient = new SmtpClient(emailSettings["SmtpServer"])
         {
             Port = int.Parse(emailSettings["Port"]!),
             Credentials = new NetworkCredential(
@@ -29,13 +29,22 @@ public class EmailService
             EnableSsl = true
         };
 
-        var mailMessage = new MailMessage
+        using var mailMessage = new MailMessage
         {
-            From = new MailAddress(emailSettings["From"]!),
-            Subject = "🌸 New Blushing Blossoms Inquiry",
-            Body = body,
+            From = new MailAddress(emailSettings["From"]!, "Blushing Blossoms"),
+            Subject = subject,
+            Body = textBody,
             IsBodyHtml = false
         };
+        mailMessage.AlternateViews.Add(
+            AlternateView.CreateAlternateViewFromString(htmlBody, System.Text.Encoding.UTF8, "text/html"));
+
+        // Hitting "Reply" in the inbox goes straight to the client
+        if (!string.IsNullOrWhiteSpace(replyTo))
+        {
+            try { mailMessage.ReplyToList.Add(new MailAddress(replyTo.Trim())); }
+            catch (FormatException) { /* invalid client email — skip Reply-To */ }
+        }
 
         foreach (var email in emailSettings["To"]!.Split(','))
         {

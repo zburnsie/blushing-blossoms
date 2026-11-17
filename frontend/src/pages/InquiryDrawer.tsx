@@ -86,6 +86,11 @@ export type Inquiry = {
   colorPalette: string | null;
   budget: string;
   weddingItems: string | null;
+  bridesmaidBouquetsCount: number | null;
+  boutonnieresCount: number | null;
+  corsagesCount: number | null;
+  centerpiecesCount: number | null;
+  installationDetails: string | null;
   rentalsInterest: string | null;
   referralSource: string;
   createdAt: string;
@@ -122,6 +127,11 @@ type EditState = {
   colorPalette: string;
   budget: string;
   weddingItems: string[];
+  bridesmaidBouquetsCount: string;
+  boutonnieresCount: string;
+  corsagesCount: string;
+  centerpiecesCount: string;
+  installationDetails: string;
   rentalsInterest: string;
   referralSource: string;
   notes: string;
@@ -135,9 +145,19 @@ const WORKFLOW_STAGES = [
 ];
 
 const WEDDING_ITEM_OPTIONS = [
-  "Bridal Bouquet", "Boutonnieres", "Bridesmaid Bouquets",
+  "Bridal Bouquet", "Bridesmaid Bouquets", "Boutonnieres", "Corsages",
   "Centerpieces", "Installations", "Other",
 ];
+
+const COUNTED_ITEMS = [
+  { item: "Bridesmaid Bouquets", field: "bridesmaidBouquetsCount" },
+  { item: "Boutonnieres", field: "boutonnieresCount" },
+  { item: "Corsages", field: "corsagesCount" },
+  { item: "Centerpieces", field: "centerpiecesCount" },
+] as const;
+
+const countToString = (n: number | null) => (n == null ? "" : String(n));
+const stringToCount = (v: string) => (v.trim() === "" ? null : Number(v));
 
 function defaultPricing(): PricingState {
   return {
@@ -181,6 +201,11 @@ function toEditState(inq: Inquiry): EditState {
     colorPalette: inq.colorPalette ?? "",
     budget: inq.budget,
     weddingItems: inq.weddingItems ? inq.weddingItems.split(",") : [],
+    bridesmaidBouquetsCount: countToString(inq.bridesmaidBouquetsCount),
+    boutonnieresCount: countToString(inq.boutonnieresCount),
+    corsagesCount: countToString(inq.corsagesCount),
+    centerpiecesCount: countToString(inq.centerpiecesCount),
+    installationDetails: inq.installationDetails ?? "",
     rentalsInterest: inq.rentalsInterest ?? "",
     referralSource: inq.referralSource,
     notes: inq.notes ?? "",
@@ -200,6 +225,11 @@ function buildPayload(inq: Inquiry, edit: EditState, pricing: PricingState, flow
     colorPalette: edit.colorPalette || null,
     budget: edit.budget,
     weddingItems: edit.weddingItems.length > 0 ? edit.weddingItems : null,
+    bridesmaidBouquetsCount: stringToCount(edit.bridesmaidBouquetsCount),
+    boutonnieresCount: stringToCount(edit.boutonnieresCount),
+    corsagesCount: stringToCount(edit.corsagesCount),
+    centerpiecesCount: stringToCount(edit.centerpiecesCount),
+    installationDetails: edit.installationDetails.trim() || null,
     rentalsInterest: edit.rentalsInterest || null,
     referralSource: edit.referralSource,
     notes: edit.notes || null,
@@ -629,6 +659,29 @@ export default function InquiryDrawer({ inquiry, onClose, onSaved, onDeleted }: 
                   ))}
                 </div>
               </div>
+
+              {COUNTED_ITEMS.some((c) => edit.weddingItems.includes(c.item)) && (
+                <div style={{ ...grid2, marginTop: "12px" }}>
+                  {COUNTED_ITEMS.filter((c) => edit.weddingItems.includes(c.item)).map((c) => (
+                    <div key={c.field}>
+                      <label style={fieldLabel}>{c.item} (how many)</label>
+                      <input style={input} type="number" min="0" value={edit[c.field]} onChange={(e) => updateEdit(c.field, e.target.value)} />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {edit.weddingItems.includes("Installations") && (
+                <div style={{ marginTop: "12px" }}>
+                  <label style={fieldLabel}>Installation Details</label>
+                  <textarea
+                    style={{ ...input, resize: "vertical", minHeight: "70px" }}
+                    value={edit.installationDetails}
+                    onChange={(e) => updateEdit("installationDetails", e.target.value)}
+                    placeholder="Not specified"
+                  />
+                </div>
+              )}
 
               <div style={{ marginTop: "16px", fontSize: "12px", color: "#aaa" }}>
                 Submitted: {new Date(inquiry.createdAt + "Z").toLocaleString("en-US", { timeZone: "America/Denver", dateStyle: "medium", timeStyle: "short" })}

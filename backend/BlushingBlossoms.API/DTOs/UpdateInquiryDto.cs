@@ -13,6 +13,11 @@ public class UpdateInquiryDto
     public string? ColorPalette { get; set; }
     public string Budget { get; set; } = string.Empty;
     public List<string>? WeddingItems { get; set; }
+    public int? BridesmaidBouquetsCount { get; set; }
+    public int? BoutonnieresCount { get; set; }
+    public int? CorsagesCount { get; set; }
+    public int? CenterpiecesCount { get; set; }
+    public string? InstallationDetails { get; set; }
     public string? RentalsInterest { get; set; }
     public string ReferralSource { get; set; } = string.Empty;
     public decimal? FlowerCost { get; set; }

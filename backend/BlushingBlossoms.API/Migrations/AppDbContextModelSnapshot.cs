@@ -30,12 +30,24 @@ namespace BlushingBlossoms.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("BoutonnieresCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("BridesmaidBouquetsCount")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Budget")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("CenterpiecesCount")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("ColorPalette")
                         .HasColumnType("TEXT");
+
+                    b.Property<int?>("CorsagesCount")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
@@ -62,6 +74,9 @@ namespace BlushingBlossoms.API.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("InstagramHandle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("InstallationDetails")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("KanbanStage")
