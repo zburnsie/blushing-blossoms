@@ -15,6 +15,7 @@ export default function Pricing() {
                 Transparent starting points for our most requested floral pieces.
                 All designs are customized to your vision, season, and event size.
               </p>
+              <p className="pricing-minimum">Wedding minimum: $2,000</p>
             </div>
 
             {/* Floral Design */}
